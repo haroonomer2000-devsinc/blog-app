@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <%= link_to 'Blog App', root_path, class:'navbar-brand' %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,7 +8,7 @@
       <ul class="navbar-nav">
         <% if current_user %>
             <li class="nav-item">
-                <%= link_to 'Posts', class:'nav-link'%>
+                <%= link_to 'Posts', posts_path ,class:'nav-link'%>
             </li>
             <li class="nav-item">
                 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class:'nav-link' %>
@@ -16,6 +16,9 @@
         <% else %>
             <li class="nav-item">
                 <%= link_to 'Log In', new_user_session_path, class:'nav-link' %>
+            </li>
+            <li class="nav-item">
+                <%= link_to 'Sign Up', new_user_registration_path, class:'nav-link' %>
             </li>
         <% end %>
       </ul>
