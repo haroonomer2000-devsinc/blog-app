@@ -16,6 +16,11 @@
             <li class="nav-item">
                 <%= link_to 'Edit Profile', edit_user_registration_path, class:'nav-link' %>
             </li>
+            <% if current_user.role == "admin"%>
+              <li class="nav-item">
+                  <%= link_to 'Admin', rails_admin_path, class:'nav-link' %>
+              </li>
+            <% end %>
         <% else %>
             <li class="nav-item">
                 <%= link_to 'Log In', new_user_session_path, class:'nav-link' %>
