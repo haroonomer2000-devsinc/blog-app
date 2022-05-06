@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order("created_at DESC")
   end
 
   # GET /posts/1 or /posts/1.json
@@ -18,6 +17,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = Post.find(params[:id])
+    authorize @post  
   end
 
   # POST /posts or /posts.json
@@ -37,6 +38,10 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+
+    @post = Post.find(params[:id])
+    authorize @post  
+
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
@@ -50,6 +55,10 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+
+    @post = Post.find(params[:id])
+    authorize @post  
+
     @post.destroy
 
     respond_to do |format|
@@ -66,6 +75,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description)
+      params.require(:post).permit(:title, :description, :attachment, :user_id)
     end
 end
