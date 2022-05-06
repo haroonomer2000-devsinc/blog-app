@@ -92,6 +92,7 @@ GEM
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
+    hirb (0.7.3)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.1)
@@ -137,6 +138,8 @@ GEM
     orm_adapter (0.5.0)
     public_suffix (4.0.7)
     puma (3.12.6)
+    pundit (2.2.0)
+      activesupport (>= 3.0.0)
     racc (1.6.0)
     rack (2.2.3)
     rack-pjax (1.1.0)
@@ -259,9 +262,11 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  hirb (~> 0.7.3)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.11)
+  pundit
   rails (~> 5.2.7)
   rails_admin
   sass-rails (~> 5.0)
