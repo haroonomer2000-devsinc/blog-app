@@ -3,7 +3,13 @@
 one:
   title: MyString
   description: MyString
+  attachment: MyString
+  status: 1
+  user: one
 
 two:
   title: MyString
   description: MyString
+  attachment: MyString
+  status: 1
+  user: two

@@ -1,29 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Posts</h1>
+<h2>Recent posts</h2>
+<br/>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @posts.each do |post| %>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.description %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="card mb-3" style="max-width: 90%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="https://unsplash.com/photos/CAXt2XD2XbI" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p><b>Posted by: </b><%= post.user.email %></p>
+          <p class="card-text"><%= post.description %></p>
+          <p class="card-text"><small class="text-muted">Posted <%= time_ago_in_words(post.created_at) %> ago </small></p>
+          <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(post.updated_at) %> ago </small></p>
+          <%= link_to 'Show', post, class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
 
 <br>
+<%= link_to 'New Post', new_post_path, class:"btn btn-primary" %>
+<br>
+<br>
+<br>
 
-<%= link_to 'New Post', new_post_path %>
