@@ -11,17 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.label :title, class:"form-label" %>
+    <%= form.text_field :title, class:"form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+  <br/>
+  <div class="form-group">
+    <%= form.label :description, class:"form-label" %>
+    <%= form.text_field :description, class:"form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <br/>
+  <div class="form-group">
+    <%= form.label :attachment, class:"form-label" %>
+    <%= form.text_field :attachment, class:"form-control" %>
   </div>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <br/>
+  <div class="form-group">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+
+  <br/>
 <% end %>
