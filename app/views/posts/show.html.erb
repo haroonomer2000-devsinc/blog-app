@@ -8,12 +8,11 @@
           <p><b>Posted by: </b><%= @post.user.email %></p>
           <p class="card-text"><%= @post.description %></p>
           <p class="card-text"><small class="text-muted">Posted <%= time_ago_in_words(@post.created_at) %> ago </small></p>
-          <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(@post.updated_at) %> ago </small></p>
-          <% @post.files.each do |file| %>
-            <%= link_to file.filename, file, target: :blank %>
-            <br/>
+          <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(@post.updated_at) %> ago </small></p>          
+          <% if @post.file.attached? %>
+              <%= cl_image_tag @post.file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
           <% end %>
-          <br/>
+          <br/><br/>
           <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
           <% if current_user.id == @post.user_id %>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
@@ -23,4 +22,5 @@
       </div>
     </div>
 </div>
+
 
