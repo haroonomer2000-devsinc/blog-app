@@ -2,16 +2,18 @@
 
 <div class="card mb-3" style="max-width: 90%;">
     <div class="row g-0">
-      <div class="col-md-4">
-        <img src="https://unsplash.com/photos/CAXt2XD2XbI" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="card-body">
           <h5 class="card-title"><%= @post.title %></h5>
           <p><b>Posted by: </b><%= @post.user.email %></p>
           <p class="card-text"><%= @post.description %></p>
           <p class="card-text"><small class="text-muted">Posted <%= time_ago_in_words(@post.created_at) %> ago </small></p>
           <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(@post.updated_at) %> ago </small></p>
+          <% @post.files.each do |file| %>
+            <%= link_to file.filename, file, target: :blank %>
+            <br/>
+          <% end %>
+          <br/>
           <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
           <% if current_user.id == @post.user_id %>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
