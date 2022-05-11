@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       patch :publish
       patch :unpublish
     end
+    resources :comments, only: [:create]
   end
 
   root "home#index"
