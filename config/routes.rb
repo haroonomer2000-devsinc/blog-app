@@ -2,7 +2,15 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users
-  resources :posts
+  resources :posts do 
+    collection do
+      get :pending
+    end
+    member do 
+      patch :publish
+      patch :unpublish
+    end
+  end
 
   root "home#index"
 end

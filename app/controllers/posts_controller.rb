@@ -1,13 +1,34 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all.order("created_at DESC")
+    @posts = Post.published.order("created_at DESC")
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+  end
+
+  def pending 
+    if current_user.role != "moderator"
+      @pending_posts = current_user.posts.unpublished
+    else
+      @pending_posts = Post.unpublished
+    end
+  end
+
+  def publish 
+    post = Post.find(params[:id])
+    post.published!
+    redirect_to posts_path
+  end
+
+  def unpublish 
+    post = Post.find(params[:id])
+    post.unpublished!
+    redirect_to posts_path
   end
 
   # GET /posts/new
