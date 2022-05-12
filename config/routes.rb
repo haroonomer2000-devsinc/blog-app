@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
 
-  root "home#index"
+  root "posts#index"
 end
