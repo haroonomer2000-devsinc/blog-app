@@ -19,17 +19,8 @@
     <div class="container">
 
       <br/>
-      <% if alert %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <p class="alert"><%= alert %></p>
-        </div>
-      <% end %>
-
-      <% if notice %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
           <p class="notice"><%= notice %></p>
-        </div>
-      <% end %>
 
       <%= yield %>
     </div>
