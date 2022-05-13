@@ -41,6 +41,8 @@ GEM
       actionpack (= 5.2.7)
       activerecord (= 5.2.7)
       marcel (~> 1.0.0)
+    activestorage-validator (0.1.5)
+      rails (>= 5.2.0)
     activesupport (5.2.7)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -277,6 +279,7 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
+  activestorage-validator
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
