@@ -13,8 +13,10 @@
             <p class="card-text"><%= post.description %></p>
             <p class="card-text"><small class="text-muted">Submitted <%= time_ago_in_words(post.created_at) %> ago </small></p>
             <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(post.updated_at) %> ago </small></p>          
-            <% if post.file.attached? %>
-                <%= cl_image_tag post.file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
+            <% if post.files.attached? %>
+              <% post.files.each do |file| %>
+                <%= cl_image_tag file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
+              <% end %>
             <% end %>
             <% if current_user.role == "moderator" %>
                 <br/><br/>
