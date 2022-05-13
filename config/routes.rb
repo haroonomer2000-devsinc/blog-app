@@ -9,9 +9,10 @@ Rails.application.routes.draw do
     member do 
       patch :publish
       patch :unpublish
+      delete :remove
     end
     resources :comments, only: [:create]
   end
 
-  root "home#index"
+  root "posts#index"
 end

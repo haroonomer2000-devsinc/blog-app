@@ -13,21 +13,30 @@ class PostsController < ApplicationController
 
   def pending 
     if current_user.role != "moderator"
-      @pending_posts = current_user.posts.unpublished
+      @pending_posts = current_user.posts.unpublished.order(id: :desc)
     else
-      @pending_posts = Post.unpublished
+      @pending_posts = Post.unpublished.order(id: :desc)
     end
   end
 
   def publish 
     post = Post.find(params[:id])
     post.published!
+    post.published_at = Time.now
+    post.save
+    print(Time.now,"=",post.published_at)
     redirect_to posts_path
   end
 
   def unpublish 
     post = Post.find(params[:id])
     post.unpublished!
+    redirect_to posts_path
+  end
+
+  def remove 
+    post = Post.find(params[:id])
+    post.destroy
     redirect_to posts_path
   end
 

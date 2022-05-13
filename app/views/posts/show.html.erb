@@ -13,7 +13,6 @@
               <%= cl_image_tag @post.file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
           <% end %>
           <br/><br/>
-          <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
           <% if current_user.id == @post.user_id %>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
             <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
@@ -23,12 +22,15 @@
     </div>
 </div>
 
+<% if @post.published? %>
+  <br/>
+  <h3>Comments</h3>
+  <hr/><br/>
+  <%= render @post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %><br/>
 
+  <h3>Add comment</h3><hr/><br/>
+  <%= render 'comments/form', locals: {post: @post, parent: @parent = nil} %>
+<% end %>
 <br/>
-<h3>Comments</h3>
-<hr/><br/>
-<%= render @post.comments %><br/>
-
-<h3>Add comment</h3><hr/><br/>
-<%= render 'comments/form', locals: {post: @post} %>
+<%= link_to 'Back', posts_path, class:"btn btn-primary" %>
 <br/><br/>
