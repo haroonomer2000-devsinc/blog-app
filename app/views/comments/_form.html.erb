@@ -11,6 +11,14 @@
 
   <br/>
   <div class="form-group">
+    <%= form.label :attachments, class:"form-label" %>
+    <%= form.file_field :files, class:"form-control", 
+        accept: 'image/jpg, image/jpeg, image/png', 
+        multiple: true %>
+  </div>
+
+  <br/>
+  <div class="form-group">
     <%= form.submit "Post", class:'btn btn-primary' %>
   </div>
 
