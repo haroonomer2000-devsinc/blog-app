@@ -1,3 +1,5 @@
+<%= javascript_include_tag :application %>
+
 <ul class="list-group">
   <li class="list-group-item comment">
     <strong><%= comment.user.email %>: </strong><%= comment.body %>
@@ -10,10 +12,10 @@
           <%= cl_image_tag file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
       <% end %>
       <br/><br/>
+      <% end %>
       <% if current_user.id == comment.user.id %>  
        <%= link_to 'Delete', post_comment_path(comment.post_id,comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
        <br/><br/>
-      <% end %>
       <% end %>
       <a class="comment-form-display" href="#">Reply</a>
       <div class="comment-form">
@@ -26,11 +28,4 @@
   </li><br/>
 </ul>
 
-<script>
-    document.querySelectorAll('.comment-form-display').forEach((el) => {
-      el.addEventListener('click',(ev) => {
-          ev.preventDefault();
-          el.nextElementSibling.style = 'display: block; margin-top:20px'
-      })
-    })
-</script>
+
