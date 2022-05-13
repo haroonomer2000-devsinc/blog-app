@@ -8,6 +8,7 @@ gem 'hirb', '~> 0.7.3'
 gem 'pundit'
 gem 'cloudinary'
 gem 'activestorage-validator'
+gem 'jquery-turbolinks'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.7'
