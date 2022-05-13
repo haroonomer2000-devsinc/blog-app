@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params)
-    print("idfaf'adfkap'idjf eiw2381029840184 x1384",comment_params[:parent_id])
     if !@comment.save
       flash[:alert] = @comment.errors.full_messages.to_sentence
     end
