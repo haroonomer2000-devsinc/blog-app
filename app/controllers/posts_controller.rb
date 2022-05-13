@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.published.order("created_at DESC")
+    @posts = Post.published.order(id: :desc)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -24,20 +24,13 @@ class PostsController < ApplicationController
     post.published!
     post.published_at = Time.now
     post.save
-    print(Time.now,"=",post.published_at)
-    redirect_to posts_path
-  end
-
-  def unpublish 
-    post = Post.find(params[:id])
-    post.unpublished!
-    redirect_to posts_path
+    redirect_to pending_posts_path
   end
 
   def remove 
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path
+    redirect_to pending_posts_path
   end
 
   # GET /posts/new
@@ -105,6 +98,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :attachment, :user_id, :file)
+      params.require(:post).permit(:title, :description, :user_id, files: [])
     end
 end

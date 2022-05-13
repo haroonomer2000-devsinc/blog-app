@@ -16,8 +16,8 @@
           <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(post.updated_at) %> ago </small></p>
           <%= link_to 'Show', post, class:"btn btn-primary" %>
           <% if current_user.role == "moderator" %>
-                <br/><br/>
-                <%= link_to 'Remove', unpublish_post_path(post), method: :patch, class:"btn btn-danger",  data: { confirm: 'Are you sure?' } %>
+            <br/><br/>
+            <%= link_to 'Remove', remove_post_path(post), method: :delete, class:"btn btn-danger",  data: { confirm: 'Are you sure?' } %>
           <% end %>
         </div>
       </div>

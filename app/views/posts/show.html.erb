@@ -9,11 +9,13 @@
           <p class="card-text"><%= @post.description %></p>
           <p class="card-text"><small class="text-muted">Posted <%= time_ago_in_words(@post.created_at) %> ago </small></p>
           <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(@post.updated_at) %> ago </small></p>          
-          <% if @post.file.attached? %>
-              <%= cl_image_tag @post.file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
+          <% if @post.files.attached? %>
+            <% @post.files.each do |file| %>
+              <%= cl_image_tag file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
+            <% end %>
           <% end %>
           <br/><br/>
-          <% if current_user.id == @post.user_id %>
+          <% if current_user.id == @post.user_id && @post.published? %>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
             <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
           <% end %>
