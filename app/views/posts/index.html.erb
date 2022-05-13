@@ -12,7 +12,7 @@
           <h5 class="card-title"><%= post.title %></h5>
           <p><b>Posted by: </b><%= post.user.email %></p>
           <p class="card-text"><%= post.description %></p>
-          <p class="card-text"><small class="text-muted">Posted <%= time_ago_in_words(post.created_at) %> ago </small></p>
+          <p class="card-text"><small class="text-muted">Posted <%= time_ago_in_words(post.published_at) %> ago </small></p>
           <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(post.updated_at) %> ago </small></p>
           <%= link_to 'Show', post, class:"btn btn-primary" %>
           <% if current_user.role == "moderator" %>
@@ -31,4 +31,3 @@
 <br>
 <br>
 <br>
-
