@@ -13,3 +13,9 @@
 .comment{
     margin-top: 20px;
 }
+
+.edit-delete-comment{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}

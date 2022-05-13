@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       patch :publish
       delete :remove
     end
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :destroy]
   end
 
   root "posts#index"
