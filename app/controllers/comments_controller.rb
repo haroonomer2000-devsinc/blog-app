@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = current_user.comments.new(comment_params)
+    @comment = current_user.comments.new(comment_params.merge(post_id: params[:post_id]))
     if !@comment.save
       flash[:alert] = @comment.errors.full_messages.to_sentence
     end
@@ -17,6 +17,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:post).permit(:body, :parent_id, files: []).merge(post_id: params[:post_id])
+    params.require(:post).permit(:body, :parent_id, files: [])
   end
 end
