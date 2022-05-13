@@ -3,13 +3,17 @@
     <strong><%= comment.user.email %>: </strong><%= comment.body %>
     <span>
       <p class="card-text">
-        <small class="text-muted">Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
+          <small class="text-muted">Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
       </p>
       <% if comment.files.attached? %>
-        <% comment.files.each do |file| %>
-            <%= cl_image_tag file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
-        <% end %>
-        <br/><br/>
+      <% comment.files.each do |file| %>
+          <%= cl_image_tag file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
+      <% end %>
+      <br/><br/>
+      <% if current_user.id == comment.user.id %>  
+       <%= link_to 'Delete', post_comment_path(comment.post_id,comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+       <br/><br/>
+      <% end %>
       <% end %>
       <a class="comment-form-display" href="#">Reply</a>
       <div class="comment-form">
