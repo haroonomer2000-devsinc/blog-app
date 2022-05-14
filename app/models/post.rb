@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :suggestions
   validates :title, presence: :true
   validates :description, presence: :true
   has_many_attached :files
