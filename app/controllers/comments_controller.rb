@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy 
-    print(params)
     @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to post_path(params[:post_id])
