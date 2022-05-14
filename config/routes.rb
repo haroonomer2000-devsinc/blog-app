@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       delete :remove
     end
     resources :comments, only: [:create, :destroy]
+    resources :suggestion, only: [:create]
   end
 
   root "posts#index"
