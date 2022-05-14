@@ -11,7 +11,11 @@ Rails.application.routes.draw do
       delete :remove
     end
     resources :comments, only: [:create, :destroy]
-    resources :suggestion, only: [:create, :destroy]
+    resources :suggestion do 
+      member do 
+        patch :apply
+      end
+    end
   end
 
   root "posts#index"
