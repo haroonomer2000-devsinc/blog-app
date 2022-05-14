@@ -8,10 +8,7 @@ class Post < ApplicationRecord
   enum status: { unpublished: 0, published: 1 }
 
   def apply_suggestion(suggestion)
-    desc_arr = self.description.split(" ")
-    desc_arr.grep(/#{suggestion.to_replace}/i).each do |word|
-      self.description.gsub! word, suggestion.replacement
-    end
+    self.description.gsub!(/#{suggestion.to_replace}/i, suggestion.replacement)
     self.save!
   end
 end
