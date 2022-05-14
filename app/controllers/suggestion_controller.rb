@@ -7,6 +7,14 @@ class SuggestionController < ApplicationController
     redirect_to post_path(params[:post_id])
   end
   
+  def apply 
+    @post = Post.find(params[:post_id])
+    @suggestion = Suggestion.find(params[:id])
+    @post.apply_suggestion(@suggestion)
+    @suggestion.destroy
+    redirect_to post_path(params[:post_id])
+  end
+
   def destroy 
     @suggestion = Suggestion.find(params[:id])
     @suggestion.destroy
@@ -15,7 +23,7 @@ class SuggestionController < ApplicationController
 
   private
   
-  def suggestion_params
-    params.require(:post).permit(:to_replace, :replacement)
-  end
+    def suggestion_params
+      params.require(:post).permit(:to_replace, :replacement)
+    end
 end

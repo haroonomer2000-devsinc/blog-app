@@ -13,7 +13,7 @@
       <td><%= suggestion.user.email %></td>
       <td><%= suggestion.to_replace %></td>
       <td><%= suggestion.replacement %></td>
-      <td><%= link_to 'Approve', edit_post_path(@post), class:"btn btn-success"%> <%= link_to 'Deny', post_suggestion_path(@post,suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%></td>
+      <td><%= link_to 'Approve', apply_post_suggestion_path(@post, suggestion.id), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-success"%> <%= link_to 'Deny', post_suggestion_path(@post,suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%></td>
     </tr>
     <% end %>
   </tbody>
