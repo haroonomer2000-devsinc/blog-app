@@ -16,11 +16,10 @@
           <% end %>
           <br/><br/>
           <% if current_user.id == @post.user_id && @post.published? %>
-            <ul>
-            <% @post.suggestions.each do |s| %>
-            <li><%= s.to_replace %> | <%= s.replacement %></li>
-            <% end %>
-            </ul>
+            <a class="suggestions-display" href="#">Show Suggestions</a>
+            <div class="suggestion-form">
+              <%= render 'suggestion/suggestions', locals: {post: @post} %>
+            </div><br/><br/>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
             <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
           <% elsif current_user.id != @post.user_id %>
@@ -49,6 +48,15 @@
 
 <script>
 document.querySelectorAll('.suggestion-form-display').forEach((el) => {
+  el.addEventListener('click',(ev) => {
+      ev.preventDefault();
+      el.nextElementSibling.style = 'display: block; margin-top:20px'
+  })
+  })
+</script>
+
+<script>
+document.querySelectorAll('.suggestions-display').forEach((el) => {
   el.addEventListener('click',(ev) => {
       ev.preventDefault();
       el.nextElementSibling.style = 'display: block; margin-top:20px'
