@@ -9,6 +9,9 @@ gem 'pundit'
 gem 'cloudinary'
 gem 'activestorage-validator'
 gem 'jquery-turbolinks'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.7'
