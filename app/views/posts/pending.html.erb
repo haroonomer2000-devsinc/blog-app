@@ -32,3 +32,7 @@
 <br/>
 <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
 <br/><br/>
+
+<div class="pagination">
+  <%= paginate @pending_posts, theme: 'twitter-bootstrap-4' %>
+</div>
