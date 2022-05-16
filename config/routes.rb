@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  resources :likes, only: [:create, :destroy]
   resources :posts do 
     collection do
       get :pending

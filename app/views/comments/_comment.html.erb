@@ -21,6 +21,9 @@
       <div class="comment-form">
         <%= render 'comments/form', locals: {post: @post, parent: @parent = comment} %>
       </div>
+
+      <%= render partial: 'likes/button', locals: { likeable: comment } %>
+
       <div class="sub-comment">
           <%= render comment.comments %>
       </div>
