@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_12_180401) do
+ActiveRecord::Schema.define(version: 2022_05_14_120419) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 2022_05_12_180401) do
     t.datetime "updated_at", null: false
     t.datetime "published_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.string "to_replace"
+    t.string "replacement"
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_suggestions_on_post_id"
+    t.index ["user_id"], name: "index_suggestions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

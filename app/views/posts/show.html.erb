@@ -16,8 +16,17 @@
           <% end %>
           <br/><br/>
           <% if current_user.id == @post.user_id && @post.published? %>
+            <a class="suggestions-display" href="#">Show Suggestions</a>
+            <div class="suggestion-form">
+              <%= render 'suggestion/suggestions', locals: {post: @post} %>
+            </div><br/><br/>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
             <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          <% elsif current_user.id != @post.user_id %>
+            <a class="suggestion-form-display" href="#">Add Suggestion</a>
+            <div class="suggestion-form">
+              <%= render 'suggestion/form', locals: {post: @post} %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -36,3 +45,21 @@
 <br/>
 <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
 <br/><br/>
+
+<script>
+document.querySelectorAll('.suggestion-form-display').forEach((el) => {
+  el.addEventListener('click',(ev) => {
+      ev.preventDefault();
+      el.nextElementSibling.style = 'display: block; margin-top:20px'
+  })
+  })
+</script>
+
+<script>
+document.querySelectorAll('.suggestions-display').forEach((el) => {
+  el.addEventListener('click',(ev) => {
+      ev.preventDefault();
+      el.nextElementSibling.style = 'display: block; margin-top:20px'
+  })
+  })
+</script>
