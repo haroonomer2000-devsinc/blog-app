@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
 
   has_many_attached :files
   has_many :comments, foreign_key: :parent_id
-  has_many :likes, as: :likeable
+  has_many :likes, as: :likeable, dependent: :destroy
 
   validates :body, presence: :true
 end

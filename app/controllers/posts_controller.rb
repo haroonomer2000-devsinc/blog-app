@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.published.order(id: :desc).page(params[:page]).per(4)
+    @posts = Post.PUBLISHED.order(id: :desc).page(params[:page]).per(4)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -13,15 +13,15 @@ class PostsController < ApplicationController
 
   def pending 
     if current_user.role != "moderator"
-      @pending_posts = current_user.posts.unpublished.order(id: :desc).page(params[:page]).per(4)
+      @pending_posts = current_user.posts.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
     else
-      @pending_posts = Post.unpublished.order(id: :desc).page(params[:page]).per(4)
+      @pending_posts = Post.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
     end
   end
 
   def publish 
     post = Post.find(params[:id])
-    post.published!
+    post.PUBLISHED!
     post.published_at = Time.now
     post.save
     redirect_to pending_posts_path
