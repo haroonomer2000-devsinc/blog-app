@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     member do 
       patch :publish
       delete :remove
+      patch :report 
+      patch :accept_report
+      patch :deny_report
     end
     resources :comments do 
       patch :report 

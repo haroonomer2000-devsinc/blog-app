@@ -1,0 +1,8 @@
+<ul class="list-group">
+  <li class="list-group-item">Post has been reported<span>
+  <div class="report-approval">
+      <%= link_to 'Accept', accept_report_post_path(post.id), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-success" %>
+      <%= link_to 'Deny', deny_report_post_path(post.id), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+  </div>
+  </span></li>
+</ul>

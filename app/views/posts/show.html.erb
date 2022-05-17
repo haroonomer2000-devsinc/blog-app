@@ -15,6 +15,10 @@
             <% end %>
           <% end %>
           <br/><br/>
+          <% if current_user.role == "moderator" && @post.report_status == "reported" %>
+            <%= render partial: 'reported', locals: {post: @post} %>
+            <br/><br/>
+          <% end %>
           <% if current_user.id == @post.user_id && @post.PUBLISHED? %>
             <a class="suggestions-display" href="#">Show Suggestions</a>
             <div class="suggestion-form">
@@ -26,7 +30,8 @@
             <a class="suggestion-form-display" href="#">Add Suggestion</a>
             <div class="suggestion-form">
               <%= render 'suggestion/form', locals: {post: @post} %>
-            </div>
+            </div><br/><br/>
+            <%= link_to 'Report', report_post_path(@post.id), method: :patch, data: { confirm: 'Are you sure?' } %>
           <% end %>
         </div>
       </div>

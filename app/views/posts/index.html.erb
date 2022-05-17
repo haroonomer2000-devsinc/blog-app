@@ -3,7 +3,7 @@
 <h2>Recent posts</h2>
 <br/>
 
-<% @posts.each do |post| %>
+<% @posts.where(report_status: [nil, "reported"]).each do |post| %>
 
   <div class="card mb-3" style="max-width: 90%;">
     <div class="row g-0">
