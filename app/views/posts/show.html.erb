@@ -20,10 +20,6 @@
             <div class="suggestion-form">
               <%= render 'suggestion/suggestions', locals: {post: @post} %>
             </div><br/><br/>
-            <a class="reported-display" href="#">Show Reports</a>
-            <div class="suggestion-form">
-              <%= render partial:'comments/reported', locals: {comments: @post.comments.where(status: "reported")} %>
-            </div><br/><br/>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
             <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
           <% elsif current_user.id != @post.user_id %>
@@ -45,6 +41,14 @@
   <br/>
   <h3>Comments</h3>
   <hr/><br/>
+
+  <% if current_user.id == @post.user_id && @post.PUBLISHED? %>
+    <a class="reported-display" href="#">Show Reported Comments</a>
+    <div class="suggestion-form">
+      <%= render partial:'comments/reported', locals: {comments: @post.comments.where(status: "reported")} %>
+    </div><br/><br/>
+  <% end %>
+
   <%= render @post.comments.where(parent_id: nil, status: [nil,"reported"]).includes(:user).order(id: :desc) %><br/>
 
   <h3>Add comment</h3><hr/><br/>
