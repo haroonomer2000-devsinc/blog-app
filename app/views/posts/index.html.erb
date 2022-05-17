@@ -9,16 +9,21 @@
     <div class="row g-0">
       <div class="col-md-12">
         <div class="card-body">
+          
+          <!-- Post details -->
           <h5 class="card-title"><%= post.title %></h5>
           <p><b>Posted by: </b><%= post.user.email %></p>
           <p class="card-text"><%= post.description %></p>
           <p class="card-text"><small class="text-muted">Posted <%= time_ago_in_words(post.published_at) %> ago </small></p>
           <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(post.updated_at) %> ago </small></p>
           <%= link_to 'Show', post, class:"btn btn-primary" %>
+          
+          <!-- Moderator can remove posts -->
           <% if current_user.role == "moderator" %>
             <br/><br/>
             <%= link_to 'Remove', remove_post_path(post), method: :delete, class:"btn btn-danger",  data: { confirm: 'Are you sure?' } %>
           <% end %>
+
         </div>
       </div>
     </div>
@@ -28,9 +33,7 @@
 
 <br>
 <%= link_to 'New Post', new_post_path, class:"btn btn-primary" %>
-<br>
-<br>
-<br>
+<br><br><br>
 
 <div class="pagination">
   <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
