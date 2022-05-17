@@ -15,8 +15,10 @@
       <% end %>
       <% if current_user.id == comment.user.id %>  
        <%= link_to 'Delete', post_comment_path(comment.post_id,comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-       <br/><br/>
+      <% else %>
+       <%= link_to 'Report', post_comment_report_path(comment.post_id,comment.id), method: :patch, data: { confirm: 'Are you sure?' } %>
       <% end %>
+      <br/><br/>
       <a class="comment-form-display" href="#">Reply</a>
       <div class="comment-form">
         <%= render 'comments/form', locals: {post: @post, parent: @parent = comment} %>

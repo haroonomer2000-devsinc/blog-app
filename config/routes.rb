@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       patch :publish
       delete :remove
     end
-    resources :comments, only: [:create, :destroy]
+    resources :comments do 
+      patch :report 
+      patch :accept_report
+      patch :deny_report
+    end
     resources :suggestion do 
       member do 
         patch :apply

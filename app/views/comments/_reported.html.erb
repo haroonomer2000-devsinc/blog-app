@@ -1,0 +1,17 @@
+
+<% if comments.any? %>
+    <ul class="list-group">
+    <% comments.each do |comment|%>
+        <li class="list-group-item"><strong><%= comment.user.email %>: </strong><%= comment.body %><span>
+        <div class="report-approval">
+          <%= link_to 'Accept', post_comment_accept_report_path(comment.post_id,comment.id), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-success" %>
+          <%= link_to 'Deny', post_comment_deny_report_path(comment.post_id,comment.id), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        </div>
+        </span></li>
+    <% end %>
+    </ul>
+<% else %>
+  <blockquote class="blockquote">
+    <p>No reports for this post</p>
+  </blockquote>
+<% end %>
