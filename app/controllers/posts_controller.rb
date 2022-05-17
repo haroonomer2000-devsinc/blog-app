@@ -9,6 +9,10 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    if @post.report_status == "hidden"
+      redirect_to posts_path
+    end
   end
 
   def pending 
@@ -78,7 +82,6 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-
     @post = Post.find(params[:id])
     authorize @post  
 
@@ -88,6 +91,27 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def report 
+    @post = Post.find(params[:id])
+    @post.report_status = "reported"
+    @post.save
+    redirect_to post_path(params[:id])
+  end
+
+  def accept_report 
+    @post = Post.find(params[:id])
+    @post.report_status = "hidden"
+    @post.save
+    redirect_to posts_path
+  end
+
+  def deny_report
+    @post = Post.find(params[:id])
+    @post.report_status = nil
+    @post.save
+    redirect_to post_path(params[:id])
   end
 
   private
