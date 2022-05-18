@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[show edit update destroy]
 
   # GET /posts or /posts.json
   def index
@@ -9,9 +9,13 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    if @post.report_status == "hidden"
+      redirect_to posts_path
+    end
   end
 
-  def pending 
+  def pending
     if current_user.role != "moderator"
       @pending_posts = current_user.posts.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
     else
@@ -19,7 +23,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def publish 
+  def publish
     post = Post.find(params[:id])
     post.PUBLISHED!
     post.published_at = Time.now
@@ -27,7 +31,7 @@ class PostsController < ApplicationController
     redirect_to pending_posts_path
   end
 
-  def remove 
+  def remove
     post = Post.find(params[:id])
     post.destroy
     redirect_to pending_posts_path
@@ -41,7 +45,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
-    authorize @post  
+    authorize @post
   end
 
   # POST /posts or /posts.json
@@ -61,9 +65,8 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-
     @post = Post.find(params[:id])
-    authorize @post  
+    authorize @post
 
     respond_to do |format|
       if @post.update(post_params)
@@ -78,9 +81,8 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-
     @post = Post.find(params[:id])
-    authorize @post  
+    authorize @post
 
     @post.destroy
 
@@ -90,14 +92,22 @@ class PostsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  def set_status
+    @post = Post.find(params[:id])
+    @post.report_status = params[:status]
+    @post.save
+    redirect_to post_path(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :description, :user_id, files: [])
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :description, :user_id, files: [])
+  end
 end
