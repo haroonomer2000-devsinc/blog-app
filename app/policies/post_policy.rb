@@ -1,9 +1,9 @@
 class PostPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
-    #def resolve
+    # def resolve
     # scope.all
-    #end
+    # end
   end
 
   def edit?

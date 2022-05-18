@@ -65,16 +65,15 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    user_name:      "haroon.omer@devsinc.com",
-    password:       "hfvioefanguszylv",
-    domain:         'localhost:3000',
-    address:       'smtp.gmail.com',
-    port:          '587',
+    user_name: "haroon.omer@devsinc.com",
+    password: "hfvioefanguszylv",
+    domain: 'localhost:3000',
+    address: 'smtp.gmail.com',
+    port: '587',
     authentication: :plain,
     enable_starttls_auto: true
   }
-  
+
   # Use Cloudinary.
   config.active_storage.service = :cloudinary
-
 end
