@@ -4,8 +4,8 @@
     <% comments.each do |comment|%>
         <li class="list-group-item"><strong><%= comment.user.email %>: </strong><%= comment.body %><span>
         <div class="report-approval">
-          <%= link_to 'Accept', post_comment_accept_report_path(comment.post_id,comment.id), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-success" %>
-          <%= link_to 'Deny', post_comment_deny_report_path(comment.post_id,comment.id), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          <%= link_to 'Accept', post_comment_set_status_path(comment.post_id,comment.id, status: "hidden"), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-success" %>
+          <%= link_to 'Deny', post_comment_set_status_path(comment.post_id,comment.id, status: nil), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
         </div>
         </span></li>
     <% end %>

@@ -92,23 +92,9 @@ class PostsController < ApplicationController
     end
   end
 
-  def report
+  def set_status 
     @post = Post.find(params[:id])
-    @post.report_status = "reported"
-    @post.save
-    redirect_to post_path(params[:id])
-  end
-
-  def accept_report
-    @post = Post.find(params[:id])
-    @post.report_status = "hidden"
-    @post.save
-    redirect_to posts_path
-  end
-
-  def deny_report
-    @post = Post.find(params[:id])
-    @post.report_status = nil
+    @post.report_status = params[:status]
     @post.save
     redirect_to post_path(params[:id])
   end
