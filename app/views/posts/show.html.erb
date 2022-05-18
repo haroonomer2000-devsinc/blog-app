@@ -41,7 +41,7 @@
             <div class="suggestion-form">
               <%= render 'suggestion/form', locals: {post: @post} %>
             </div><br/><br/>
-            <%= link_to 'Report', report_post_path(@post.id), method: :patch, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Report', set_status_post_path(@post.id, status: "reported"), method: :patch, data: { confirm: 'Are you sure?' } %>
           <% end %>
 
         </div>

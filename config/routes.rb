@@ -9,14 +9,10 @@ Rails.application.routes.draw do
     member do
       patch :publish
       delete :remove
-      patch :report
-      patch :accept_report
-      patch :deny_report
+      patch :set_status
     end
     resources :comments do
-      patch :report
-      patch :accept_report
-      patch :deny_report
+      patch :set_status
     end
     resources :suggestion do
       member do

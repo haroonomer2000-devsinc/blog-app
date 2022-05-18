@@ -13,23 +13,9 @@ class CommentsController < ApplicationController
     redirect_to post_path(params[:post_id])
   end
 
-  def report
+  def set_status 
     @comment = Comment.find(params[:comment_id])
-    @comment.status = "reported"
-    @comment.save
-    redirect_to post_path(params[:post_id])
-  end
-
-  def accept_report
-    @comment = Comment.find(params[:comment_id])
-    @comment.status = "hidden"
-    @comment.save
-    redirect_to post_path(params[:post_id])
-  end
-
-  def deny_report
-    @comment = Comment.find(params[:comment_id])
-    @comment.status = nil
+    @comment.status = params[:status]
     @comment.save
     redirect_to post_path(params[:post_id])
   end
