@@ -7,30 +7,30 @@ class CommentsController < ApplicationController
     redirect_to post_path(params[:post_id])
   end
 
-  def destroy 
+  def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to post_path(params[:post_id])
   end
 
-  def report 
+  def report
     @comment = Comment.find(params[:comment_id])
-    @comment.status = "reported" 
-    @comment.save 
+    @comment.status = "reported"
+    @comment.save
     redirect_to post_path(params[:post_id])
   end
 
-  def accept_report 
+  def accept_report
     @comment = Comment.find(params[:comment_id])
-    @comment.status = "hidden" 
-    @comment.save 
+    @comment.status = "hidden"
+    @comment.save
     redirect_to post_path(params[:post_id])
   end
 
   def deny_report
     @comment = Comment.find(params[:comment_id])
-    @comment.status = nil 
-    @comment.save 
+    @comment.status = nil
+    @comment.save
     redirect_to post_path(params[:post_id])
   end
 
