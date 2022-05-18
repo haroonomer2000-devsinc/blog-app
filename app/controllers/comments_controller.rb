@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     redirect_to post_path(params[:post_id])
   end
 
-  def set_status 
+  def set_status
     @comment = Comment.find(params[:comment_id])
     @comment.status = params[:status]
     @comment.save
