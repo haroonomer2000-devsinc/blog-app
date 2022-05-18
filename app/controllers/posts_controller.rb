@@ -92,7 +92,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def set_status 
+  def set_status
     @post = Post.find(params[:id])
     @post.report_status = params[:status]
     @post.save
