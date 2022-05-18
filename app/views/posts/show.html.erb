@@ -4,17 +4,29 @@
     <div class="row g-0">
       <div class="col-md-12">
         <div class="card-body">
+         
+          <!-- Post Details -->
           <h5 class="card-title"><%= @post.title %></h5>
           <p><b>Posted by: </b><%= @post.user.email %></p>
           <p class="card-text"><%= @post.description %></p>
           <p class="card-text"><small class="text-muted">Posted <%= time_ago_in_words(@post.created_at) %> ago </small></p>
           <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(@post.updated_at) %> ago </small></p>          
+
+          <!-- Cloudinary files -->
           <% if @post.files.attached? %>
             <% @post.files.each do |file| %>
               <%= cl_image_tag file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
             <% end %>
           <% end %>
           <br/><br/>
+
+          <!-- Show reported posts for the moderator -->
+          <% if current_user.role == "moderator" && @post.report_status == "reported" %>
+            <%= render partial: 'reported', locals: {post: @post} %>
+            <br/><br/>
+          <% end %>
+
+          <!-- Show post suggestions to post owner -->
           <% if current_user.id == @post.user_id && @post.PUBLISHED? %>
             <a class="suggestions-display" href="#">Show Suggestions</a>
             <div class="suggestion-form">
@@ -22,17 +34,23 @@
             </div><br/><br/>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
             <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+          
+          <!-- Add suggestions if post not owned -->
           <% elsif current_user.id != @post.user_id %>
             <a class="suggestion-form-display" href="#">Add Suggestion</a>
             <div class="suggestion-form">
               <%= render 'suggestion/form', locals: {post: @post} %>
-            </div>
+            </div><br/><br/>
+            <%= link_to 'Report', set_status_post_path(@post.id, status: "reported"), method: :patch, data: { confirm: 'Are you sure?' } %>
           <% end %>
+
         </div>
       </div>
     </div>
 </div>
 
+
+<!-- Comments sections -->
 
 <% if @post.PUBLISHED? %>
 
@@ -41,15 +59,29 @@
   <br/>
   <h3>Comments</h3>
   <hr/><br/>
-  <%= render @post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %><br/>
 
+  <!-- Show reported comments for the post owner -->
+  <% if current_user.id == @post.user_id && @post.PUBLISHED? %>
+    <a class="reported-display" href="#">Show Reported Comments</a>
+    <div class="suggestion-form">
+      <%= render partial:'comments/reported', locals: {comments: @post.comments.where(status: "reported")} %>
+    </div><br/><br/>
+  <% end %>
+
+  <!-- Show all comments -->
+  <%= render @post.comments.where(parent_id: nil, status: [nil,"reported"]).includes(:user).order(id: :desc) %><br/>
+
+  <!-- Add comment form -->
   <h3>Add comment</h3><hr/><br/>
   <%= render 'comments/form', locals: {post: @post, parent: @parent = nil} %>
+
 <% end %>
+
 <br/>
 <%= link_to 'Back', posts_path, class:"btn btn-primary" %>
 <br/><br/>
 
+<!-- Event listener scripts -->
 <script>
 document.querySelectorAll('.suggestion-form-display').forEach((el) => {
   el.addEventListener('click',(ev) => {
@@ -61,6 +93,15 @@ document.querySelectorAll('.suggestion-form-display').forEach((el) => {
 
 <script>
 document.querySelectorAll('.suggestions-display').forEach((el) => {
+  el.addEventListener('click',(ev) => {
+      ev.preventDefault();
+      el.nextElementSibling.style = 'display: block; margin-top:20px'
+  })
+  })
+</script>
+
+<script>
+document.querySelectorAll('.reported-display').forEach((el) => {
   el.addEventListener('click',(ev) => {
       ev.preventDefault();
       el.nextElementSibling.style = 'display: block; margin-top:20px'
