@@ -9,7 +9,7 @@ development:
   <<: *default
   adapter: postgresql
   database: rails-blog-dev
-  username: postgres
+  username: postgresdevsinc
   password: hackerman1234
 
 # Warning: The database defined as "test" will be erased and
@@ -19,12 +19,12 @@ test:
   <<: *default
   adapter: postgresql
   database: rails-blog-test
-  username: postgres
+  username: postgresdevsinc
   password: hackerman1234
 
 production:
   <<: *default
   adapter: postgresql
   database: rails-blog-prod
-  username: postgres
+  username: postgresdevsinc
   password: hackerman1234
