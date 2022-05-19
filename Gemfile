@@ -14,6 +14,7 @@ gem 'bootstrap4-kaminari-views'
 gem 'rubocop-performance', '~> 1.13', '>= 1.13.3'
 gem 'rubocop-rails', '~> 2.14', '>= 2.14.2'
 gem 'rubocop-rspec', '~> 2.10'
+gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.7'
