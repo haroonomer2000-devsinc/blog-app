@@ -15,8 +15,10 @@
 
     <%= render 'home/header' %>
 
-    <h1><%= current_user.role %></h1>
-
+    <% if current_user %>
+      <h1><%= current_user.role %></h1>
+    <% end %>
+    
     <div class="container">
 
       <br/>
