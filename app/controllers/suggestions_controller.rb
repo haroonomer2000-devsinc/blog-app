@@ -1,4 +1,4 @@
-class SuggestionController < ApplicationController
+class SuggestionsController < ApplicationController
   def create
     @suggestion = current_user.suggestions.new(suggestion_params.merge(post_id: params[:post_id]))
     unless @suggestion.save
@@ -19,6 +19,16 @@ class SuggestionController < ApplicationController
     @suggestion = Suggestion.find(params[:id])
     @suggestion.destroy
     redirect_to post_path(params[:post_id])
+  end
+
+  def remove
+    @suggestion = Suggestion.find(params[:id])
+    @suggestion.destroy
+    redirect_to by_user_suggestions_path
+  end
+
+  def by_user 
+    @suggestions = current_user.suggestions
   end
 
   private
