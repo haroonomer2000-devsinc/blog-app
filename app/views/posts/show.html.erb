@@ -28,7 +28,7 @@
           <% if current_user.id == @post.user_id && @post.PUBLISHED? %>
             <a class="suggestions-display" href="#">Show Suggestions</a>
             <div class="suggestion-form">
-              <%= render 'suggestion/suggestions', locals: {post: @post} %>
+              <%= render partial: 'suggestions/suggestions', locals: {post: @post} %>
             </div><br/><br/>
             <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-warning" %>
             <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
@@ -37,7 +37,7 @@
           <% elsif current_user.id != @post.user_id %>
             <a class="suggestion-form-display" href="#">Add Suggestion</a>
             <div class="suggestion-form">
-              <%= render 'suggestion/form', locals: {post: @post} %>
+              <%= render partial: 'suggestions/form', locals: {post: @post} %>
             </div><br/><br/>
             <%= link_to 'Report', set_status_post_path(@post.id, status: "reported"), method: :patch, data: { confirm: 'Are you sure?' } %>
           <% end %>
