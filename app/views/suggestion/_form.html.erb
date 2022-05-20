@@ -2,13 +2,13 @@
  
   <div class="form-group">
     <%= form.label :"To replace", class:"form-label" %>
-    <%= form.text_field :to_replace, class:"form-control", placeholder: "to replace ..." %>
+    <%= form.text_field :to_replace, class:"form-control", placeholder: "to replace ...", :required => true %>
   </div>
 
   <br/>
   <div class="form-group">
     <%= form.label :"Replacement", class:"form-label" %>
-    <%= form.text_field :replacement, class:"form-control", placeholder: "replacement ..." %>
+    <%= form.text_field :replacement, class:"form-control", placeholder: "replacement ...", :required => true %>
   </div>
 
   <br/>
