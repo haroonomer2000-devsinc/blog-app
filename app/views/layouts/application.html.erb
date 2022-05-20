@@ -4,14 +4,12 @@
     <title>RailsBlogApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
 
   <body>
-
 
     <%= render 'layouts/header' %>
 
@@ -22,11 +20,11 @@
           <%= alert %>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-      <% elsif notice %>
+      <!--<% elsif notice %>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <%= notice %>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+        </div>-->
       <% end %>
       <%= yield %>
     </div>
