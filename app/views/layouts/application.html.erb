@@ -15,16 +15,19 @@
 
     <%= render 'home/header' %>
 
-    <% if current_user %>
-      <h1><%= current_user.role %></h1>
-    <% end %>
-    
     <div class="container">
-
       <br/>
-          <p class="alert"><%= alert %></p>
-          <p class="notice"><%= notice %></p>
-
+      <% if alert %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%= alert %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% elsif notice %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%= notice %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
 
