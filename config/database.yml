@@ -2,15 +2,15 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: postgresdevsinc
-  password: hackerman1234
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
 
 development:
   <<: *default
   adapter: postgresql
   database: blog_dev
-  username: postgresdevsinc
-  password: hackerman1234
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,12 +19,12 @@ test:
   <<: *default
   adapter: postgresql
   database: blog_test
-  username: postgresdevsinc
-  password: hackerman1234
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
 
 production:
   <<: *default
   adapter: postgresql
   database: blog_prod
-  username: postgresdevsinc
-  password: hackerman1234
+  username: <%= Rails.application.credentials.database[:username] %>
+  password: <%= Rails.application.credentials.database[:password] %>
