@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
+  get 'home/confirmation'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   resources :likes, only: [:create, :destroy]
+  resources :suggestions do 
+    collection do 
+      get :by_user
+    end
+    member do 
+      delete :remove
+    end
+  end
   resources :posts do
     collection do
       get :pending
@@ -14,7 +23,7 @@ Rails.application.routes.draw do
     resources :comments do
       patch :set_status
     end
-    resources :suggestion do
+    resources :suggestions do
       member do
         patch :apply
       end
