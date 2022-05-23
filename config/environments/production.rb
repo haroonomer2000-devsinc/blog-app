@@ -92,7 +92,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'shielded-wave-54850.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: Rails.application.credentials.domain[:url] }
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -100,7 +100,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     user_name: Rails.application.credentials.email_config[:email],
     password: Rails.application.credentials.email_config[:password],
-    domain: 'shielded-wave-54850.herokuapp.com',
+    domain: Rails.application.credentials.domain[:url],
     address: 'smtp.gmail.com',
     port: 587,
     authentication: :plain,
