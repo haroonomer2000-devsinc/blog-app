@@ -1,4 +1,4 @@
 class HomeController < ApplicationController
-  def confirmation
-  end
+    def confirmation
+    end
 end
