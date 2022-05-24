@@ -22,7 +22,7 @@ You may need to configure according to details mentioned below to run this local
 
     1. Install gems using `bundle install`
     2. Run locally using `rails s`
-    3. Open browser and type (http://127.0.0.1:3000/), you should see the app running.
+    3. Open browser and type http://127.0.0.1:3000/, you should see the app running.
 
 * Deployment instructions
 
