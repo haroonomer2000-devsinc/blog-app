@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'home/confirmation'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { registrations: "registrations" }
-  resources :likes, only: [:create, :destroy]
-  resources :suggestions do 
-    collection do 
+  devise_for :users, controllers: { registrations: 'registrations' }
+  resources :likes, only: %i[create destroy]
+  resources :suggestions do
+    collection do
       get :by_user
     end
-    member do 
+    member do
       delete :remove
     end
   end
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  match "/404", to: "errors#not_found", via: :all
-  match "/500", to: "errors#internal_server_error", via: :all
-  root "posts#index"
+  match '/404', to: 'errors#not_found', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
+  root 'posts#index'
 end
