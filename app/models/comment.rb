@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
@@ -7,5 +9,5 @@ class Comment < ApplicationRecord
   has_many :comments, foreign_key: :parent_id
   has_many :likes, as: :likeable, dependent: :destroy
 
-  validates :body, presence: :true
+  validates :body, presence: true
 end

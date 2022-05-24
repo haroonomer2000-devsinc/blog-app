@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params.merge(post_id: params[:post_id]))
-    unless @comment.save
-      flash[:alert] = @comment.errors.full_messages.to_sentence
-    end
+    flash[:alert] = @comment.errors.full_messages.to_sentence unless @comment.save
     redirect_to post_path(params[:post_id])
   end
 

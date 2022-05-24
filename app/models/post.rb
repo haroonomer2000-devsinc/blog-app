@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   belongs_to :user
   has_many :suggestions, dependent: :destroy
@@ -5,13 +7,13 @@ class Post < ApplicationRecord
   has_many_attached :files
   has_many :comments, dependent: :destroy
 
-  validates :title, presence: :true
-  validates :description, presence: :true
+  validates :title, presence: true
+  validates :description, presence: true
 
   enum status: { UNPUBLISHED: 0, PUBLISHED: 1 }
 
   def apply_suggestion(suggestion)
-    self.description.gsub!(/#{suggestion.to_replace}/i, suggestion.replacement)
-    self.save!
+    description.gsub!(/#{suggestion.to_replace}/i, suggestion.replacement)
+    save!
   end
 end
