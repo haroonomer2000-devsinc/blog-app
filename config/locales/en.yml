@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  authorization: "You are not authorized to perform this action."
+  post_create: "Post was successfully created."
+  post_update: "Post was successfully updated."
+  post_destroy: "Post was successfully destroyed."  
+  
