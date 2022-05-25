@@ -16,4 +16,9 @@ class Post < ApplicationRecord
     description.gsub!(/#{suggestion.to_replace}/i, suggestion.replacement)
     save!
   end
+
+  def publish_post
+    self.PUBLISHED!
+    self.published_at = Time.zone.now
+  end
 end
