@@ -3,7 +3,7 @@
 class SuggestionsController < ApplicationController
   before_action :set_suggestion, only: %i[apply destroy remove]
 
-  def index 
+  def index
     @suggestions = current_user.suggestions
   end
 
@@ -32,12 +32,12 @@ class SuggestionsController < ApplicationController
 
   private
 
-  def set_suggestion 
+  def set_suggestion
     @suggestion = Suggestion.find_by(id: params[:id])
-    unless @suggestion 
-      flash[:notice] = I18n.t(:resource_not_found)
-      redirect_to posts_path
-    end
+    return unless @suggestion.nil?
+
+    flash[:notice] = I18n.t(:resource_not_found)
+    redirect_to posts_path
   end
 
   def suggestion_params
