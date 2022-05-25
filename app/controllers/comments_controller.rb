@@ -24,10 +24,10 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = Comment.find_by(id: params[:id])
-    unless @comment 
-      flash[:notice] = I18n.t(:resource_not_found)
-      redirect_to posts_path
-    end
+    return unless @comment.nil?
+
+    flash[:notice] = I18n.t(:resource_not_found)
+    redirect_to posts_path
   end
 
   def comment_params

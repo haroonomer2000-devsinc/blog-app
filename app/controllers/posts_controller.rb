@@ -65,7 +65,7 @@ class PostsController < ApplicationController
     @post.save
     redirect_to post_path(params[:id])
   end
-  
+
   def pending
     @pending_posts = if current_user.role == 'moderator'
                        Post.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
@@ -90,10 +90,10 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find_by(id: params[:id])
-    unless @post 
-      flash[:notice] = I18n.t(:resource_not_found)
-      redirect_to posts_path
-    end
+    return unless @post.nil?
+
+    flash[:notice] = I18n.t(:resource_not_found)
+    redirect_to posts_path
   end
 
   # Only allow a list of trusted parameters through.
