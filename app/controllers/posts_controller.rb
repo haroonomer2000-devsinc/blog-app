@@ -75,8 +75,7 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post.PUBLISHED!
-    @post.published_at = Time.zone.now
+    @post.publish_post
     @post.save
     redirect_to pending_posts_path
   end
