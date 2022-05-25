@@ -2,37 +2,7 @@
 <br/>
 
 <% @pending_posts.each do |post| %>
-  <div class="card mb-3" style="max-width: 90%;">
-    <div class="row g-0">
-    <div class="col-md-12">
-      <div class="card-body">
-  
-        <!-- Post details -->
-        <h5 class="card-title"><%= post.title %></h5>
-        <p><b>Posted by: </b><%= post.user.email %></p>
-        <p class="card-text"><%= post.description %></p>
-        <p class="card-text"><small class="text-muted">Submitted <%= time_ago_in_words(post.created_at) %> ago </small></p>
-        <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(post.updated_at) %> ago </small></p>          
-        
-        <!-- Cloudinary files -->
-        <% if post.files.attached? %>
-          <% post.files.each do |file| %>
-            <%= cl_image_tag file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
-          <% end %>
-        <% end %>
-
-        <!-- Publish or unpublish posts for moderator -->
-        <% if current_user.role == "moderator" %>
-            <br/><br/>
-            <%= link_to 'Publish', publish_post_path(post), method: :patch, class:"btn btn-success",  data: { confirm: 'Are you sure?' } %>
-            <br/><br/>
-            <%= link_to 'Remove', remove_post_path(post), method: :delete, class:"btn btn-danger",  data: { confirm: 'Are you sure?' } %>
-        <% end %>
-   
-      </div>
-    </div>
-    </div>
-  </div>
+  <%= render partial: 'posts/post', locals: { post: post, page: "pending" } %>
 <% end %>
 
 <br/>
