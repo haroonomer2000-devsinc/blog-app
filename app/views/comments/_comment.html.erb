@@ -20,7 +20,7 @@
       <% if current_user.id == comment.user.id %>  
        <%= link_to 'Delete', post_comment_path(comment.post_id,comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% else %>
-       <%= link_to 'Report', post_comment_set_status_path(comment.post_id,comment.id,status: "reported"), method: :patch, data: { confirm: 'Are you sure?' } %>
+       <%= link_to 'Report', post_comment_path(comment.post_id,comment.id, status: "reported"), method: :patch, data: { confirm: 'Are you sure?' } %>
       <% end %>
       <br/><br/>
 
@@ -33,7 +33,7 @@
       <%= render partial: 'likes/button', locals: { likeable: comment } %>
 
       <div class="sub-comment">
-          <%= render comment.comments %>
+          <%= render comment.comments.where(status: [nil, "reported"]) %>
       </div>
     </span>
 

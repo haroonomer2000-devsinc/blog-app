@@ -1,26 +1,30 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
+  before_action :set_comment, only: %i[update destroy]
+
   def create
     @comment = current_user.comments.new(comment_params.merge(post_id: params[:post_id]))
     flash[:alert] = @comment.errors.full_messages.to_sentence unless @comment.save
     redirect_to post_path(params[:post_id])
   end
 
-  def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to post_path(params[:post_id])
-  end
-
-  def set_status
-    @comment = Comment.find(params[:comment_id])
+  def update
     @comment.status = params[:status]
     @comment.save
     redirect_to post_path(params[:post_id])
   end
 
+  def destroy
+    @comment.destroy
+    redirect_to post_path(params[:post_id])
+  end
+
   private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:post).permit(:body, :parent_id, files: [])
