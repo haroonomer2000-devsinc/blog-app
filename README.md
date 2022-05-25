@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You may need to configure according to details mentioned below to run this locally:
 
-Things you may want to cover:
+* Ruby version (2.5.9)
 
-* Ruby version
+* Ruby version (5.2.7)
 
-* System dependencies
+* Gem dependencies
+
+    You may need to run `bundle install` to install all gems locally
 
 * Configuration
 
-* Database creation
+    Development environment is configured for port 3000 so use that port.
 
-* Database initialization
+* Database 
 
-* How to run the test suite
+    Postgres is used as default database for all environments. Configure **database.yml** to change database.
 
-* Services (job queues, cache servers, search engines, etc.)
+* How to run 
+
+    1. Install gems using `bundle install`
+    2. Run locally using `rails s`
+    3. Open browser and type http://127.0.0.1:3000/, you should see the app running.
 
 * Deployment instructions
 
-* ...
+    Configure `production.rb` to change settings for deployment.
