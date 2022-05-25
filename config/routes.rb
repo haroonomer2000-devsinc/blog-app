@@ -6,9 +6,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :likes, only: %i[create destroy]
   resources :suggestions do
-    collection do
-      get :by_user
-    end
     member do
       delete :remove
     end

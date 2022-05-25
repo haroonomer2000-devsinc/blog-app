@@ -3,6 +3,10 @@
 class SuggestionsController < ApplicationController
   before_action :set_suggestion, only: %i[apply destroy remove]
 
+  def index 
+    @suggestions = current_user.suggestions
+  end
+
   def create
     @suggestion = current_user.suggestions.new(suggestion_params.merge(post_id: params[:post_id]))
     flash[:alert] = @suggestion.errors.full_messages.to_sentence unless @suggestion.save
@@ -24,10 +28,6 @@ class SuggestionsController < ApplicationController
   def remove
     @suggestion.destroy
     redirect_to by_user_suggestions_path
-  end
-
-  def by_user
-    @suggestions = current_user.suggestions
   end
 
   private
