@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class SuggestionsController < ApplicationController
+  before_action :set_suggestion, only: %i[apply destroy remove]
+
+  def index
+    @suggestions = current_user.suggestions
+  end
+
   def create
     @suggestion = current_user.suggestions.new(suggestion_params.merge(post_id: params[:post_id]))
     flash[:alert] = @suggestion.errors.full_messages.to_sentence unless @suggestion.save
@@ -9,29 +15,30 @@ class SuggestionsController < ApplicationController
 
   def apply
     @post = Post.find(params[:post_id])
-    @suggestion = Suggestion.find(params[:id])
     @post.apply_suggestion(@suggestion)
     @suggestion.destroy
     redirect_to post_path(params[:post_id])
   end
 
   def destroy
-    @suggestion = Suggestion.find(params[:id])
     @suggestion.destroy
     redirect_to post_path(params[:post_id])
   end
 
   def remove
-    @suggestion = Suggestion.find(params[:id])
     @suggestion.destroy
-    redirect_to by_user_suggestions_path
-  end
-
-  def by_user
-    @suggestions = current_user.suggestions
+    redirect_to suggestions_path
   end
 
   private
+
+  def set_suggestion
+    @suggestion = Suggestion.find_by(id: params[:id])
+    return unless @suggestion.nil?
+
+    flash[:notice] = I18n.t(:resource_not_found)
+    redirect_to posts_path
+  end
 
   def suggestion_params
     params.require(:post).permit(:to_replace, :replacement)
