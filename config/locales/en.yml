@@ -35,4 +35,5 @@ en:
   post_create: "Post was successfully created."
   post_update: "Post was successfully updated."
   post_destroy: "Post was successfully destroyed."  
+  resource_not_found: "Your requested resource does not exist."
   

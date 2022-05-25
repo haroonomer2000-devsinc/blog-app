@@ -90,7 +90,11 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(id: params[:id])
+    unless @post 
+      flash[:notice] = I18n.t(:resource_not_found)
+      redirect_to posts_path
+    end
   end
 
   # Only allow a list of trusted parameters through.

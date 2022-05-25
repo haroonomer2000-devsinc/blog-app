@@ -23,7 +23,11 @@ class CommentsController < ApplicationController
   private
 
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by(id: params[:id])
+    unless @comment 
+      flash[:notice] = I18n.t(:resource_not_found)
+      redirect_to posts_path
+    end
   end
 
   def comment_params
