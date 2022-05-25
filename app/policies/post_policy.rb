@@ -9,7 +9,7 @@ class PostPolicy < ApplicationPolicy
   end
 
   def edit?
-    @user.id == @record.user_id
+    update?
   end
 
   def update?
