@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 class SuggestionsController < ApplicationController
   def create
     @suggestion = current_user.suggestions.new(suggestion_params.merge(post_id: params[:post_id]))
-    unless @suggestion.save
-      flash[:alert] = @suggestion.errors.full_messages.to_sentence
-    end
+    flash[:alert] = @suggestion.errors.full_messages.to_sentence unless @suggestion.save
     redirect_to post_path(params[:post_id])
   end
 
@@ -27,7 +27,7 @@ class SuggestionsController < ApplicationController
     redirect_to by_user_suggestions_path
   end
 
-  def by_user 
+  def by_user
     @suggestions = current_user.suggestions
   end
 

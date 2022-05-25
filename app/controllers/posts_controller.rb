@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
@@ -10,23 +12,21 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
-    if @post.report_status == "hidden"
-      redirect_to posts_path
-    end
+    redirect_to posts_path if @post.report_status == 'hidden'
   end
 
   def pending
-    if current_user.role != "moderator"
-      @pending_posts = current_user.posts.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
-    else
-      @pending_posts = Post.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
-    end
+    @pending_posts = if current_user.role == 'moderator'
+                       Post.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
+                     else
+                       current_user.posts.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
+                     end
   end
 
   def publish
     post = Post.find(params[:id])
     post.PUBLISHED!
-    post.published_at = Time.now
+    post.published_at = Time.zone.now
     post.save
     redirect_to pending_posts_path
   end
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
+        format.html { redirect_to post_url(@post), notice: I18n.t(:post_create) }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -70,11 +70,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
+        format.html { redirect_to post_url(@post), notice: I18n.t(:post_update) }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -87,7 +85,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to posts_url, notice: I18n.t(:post_destroy) }
       format.json { head :no_content }
     end
   end
