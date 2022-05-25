@@ -33,7 +33,11 @@ class SuggestionsController < ApplicationController
   private
 
   def set_suggestion 
-    @suggestion = Suggestion.find(params[:id])
+    @suggestion = Suggestion.find_by(id: params[:id])
+    unless @suggestion 
+      flash[:notice] = I18n.t(:resource_not_found)
+      redirect_to posts_path
+    end
   end
 
   def suggestion_params
