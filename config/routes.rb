@@ -22,9 +22,7 @@ Rails.application.routes.draw do
       delete :remove
       patch :set_status
     end
-    resources :comments do
-      patch :set_status
-    end
+    resources :comments
     resources :suggestions do
       member do
         patch :apply
