@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.PUBLISHED.order(id: :desc).page(params[:page]).per(4)
+    @posts = Post.PUBLISHED.where(report_status: [nil, "reported"]).order(id: :desc).page(params[:page]).per(4)
   end
 
   # GET /posts/new

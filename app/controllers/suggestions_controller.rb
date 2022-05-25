@@ -27,7 +27,7 @@ class SuggestionsController < ApplicationController
 
   def remove
     @suggestion.destroy
-    redirect_to by_user_suggestions_path
+    redirect_to suggestions_path
   end
 
   private
