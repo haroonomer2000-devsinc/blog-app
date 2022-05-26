@@ -7,8 +7,11 @@ class Post < ApplicationRecord
   has_many_attached :files
   has_many :comments, dependent: :destroy
 
-  validates :title, presence: true
-  validates :description, presence: true
+  validates :title, presence: true, length: { minimum: 5 }
+  validates :description, presence: true, length: { minimum: 30 }
+  validates :files, file_size: { less_than_or_equal_to: 4.megabytes, message: "Please Check File Size" },
+  file_content_type: { allow: ['image/jpeg', 'image/jpg', 'image/png'],
+  message: "Please Check File Format"}
 
   enum status: { UNPUBLISHED: 0, PUBLISHED: 1 }
 
