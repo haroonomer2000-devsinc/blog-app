@@ -9,9 +9,9 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 5 }
   validates :description, presence: true, length: { minimum: 30 }
-  validates :files, file_size: { less_than_or_equal_to: 4.megabytes, message: "Please Check File Size" },
-  file_content_type: { allow: ['image/jpeg', 'image/jpg', 'image/png'],
-  message: "Please Check File Format"}
+  validates :files, file_size: { less_than_or_equal_to: 4.megabytes, message: I18n.t(:invalid_file_size) },
+                    file_content_type: { allow: ['image/jpeg', 'image/jpg', 'image/png'],
+                                         message: I18n.t(:invalid_file_format) }
 
   enum status: { UNPUBLISHED: 0, PUBLISHED: 1 }
 
