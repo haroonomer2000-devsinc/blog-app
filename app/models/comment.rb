@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Comment < ApplicationRecord
+  scope :active, -> { where(status: [nil, "reported"]) }   
+    
   belongs_to :post
   belongs_to :user
   belongs_to :parent, class_name: 'Comment', optional: true
@@ -10,4 +12,7 @@ class Comment < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
 
   validates :body, presence: true
+  validates :files, file_size: { less_than_or_equal_to: 4.megabytes, message: "Please Check File Size" },
+  file_content_type: { allow: ['image/jpeg', 'image/jpg', 'image/png'],
+  message: "Please Check File Format"}
 end

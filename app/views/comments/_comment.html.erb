@@ -33,7 +33,7 @@
       <%= render partial: 'likes/button', locals: { likeable: comment } %>
 
       <div class="sub-comment">
-          <%= render comment.comments.where(status: [nil, "reported"]) %>
+          <%= render comment.comments.active %>
       </div>
     </span>
 
