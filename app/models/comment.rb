@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Comment < ApplicationRecord
+  scope :active, -> { where(status: [nil, "reported"]) }   
+    
   belongs_to :post
   belongs_to :user
   belongs_to :parent, class_name: 'Comment', optional: true
