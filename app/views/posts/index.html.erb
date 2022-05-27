@@ -1,7 +1,7 @@
 <h2>Recent posts</h2>
 <br/>
 
-<% @posts.includes(:user).each do |post| %>
+<% @posts.each do |post| %>
   <%= render partial: 'posts/post', locals: { post: post, page: "index" } %>
 <% end %>
 

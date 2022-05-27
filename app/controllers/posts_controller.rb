@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.PUBLISHED.active.order(id: :desc).page(params[:page]).per(4)
+    @posts = Post.PUBLISHED.active.order(id: :desc).includes(:user).page(params[:page]).per(4)
   end
 
   # GET /posts/new
@@ -69,9 +69,9 @@ class PostsController < ApplicationController
 
   def pending
     @pending_posts = if current_user.role == 'moderator'
-                       Post.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
+                       Post.UNPUBLISHED.order(id: :desc).includes(:user).page(params[:page]).per(4)
                      else
-                       current_user.posts.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
+                       current_user.posts.UNPUBLISHED.order(id: :desc).includes(:user).page(params[:page]).per(4)
                      end
   end
 
