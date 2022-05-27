@@ -6,6 +6,10 @@ class CommentPolicy < ApplicationPolicy
     # end
   end
 
+  def create?
+    @user.id == @record.user_id
+  end
+
   def edit?
     update?
   end
