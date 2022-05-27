@@ -12,7 +12,7 @@ class LikesController < ApplicationController
   def destroy
     @like = current_user.likes.find(params[:id])
     authorize @like
-    @like.destroy
+    flash[:notice] = @like.errors.full_messages.to_sentence unless @like.destroy
     redirect_back(fallback_location: posts_url)
   end
 

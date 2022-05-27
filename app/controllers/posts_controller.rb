@@ -63,7 +63,11 @@ class PostsController < ApplicationController
 
   def set_status
     @post.report_status = params[:status]
-    @post.save
+    flash[:alert] = if @post.save
+                      I18n.t(:post_update)
+                    else
+                      @post.errors.full_messages.to_sentence
+                    end
     redirect_to post_path(params[:id])
   end
 
@@ -77,12 +81,20 @@ class PostsController < ApplicationController
 
   def publish
     @post.publish_post
-    @post.save
+    flash[:alert] = if @post.save
+                      I18n.t(:post_published)
+                    else
+                      @post.errors.full_messages.to_sentence
+                    end
     redirect_to pending_posts_path
   end
 
   def remove
-    @post.destroy
+    flash[:alert] = if @post.destroy
+                      I18n.t(:post_destroy)
+                    else
+                      @post.errors.full_messages.to_sentence
+                    end
     redirect_to pending_posts_path
   end
 

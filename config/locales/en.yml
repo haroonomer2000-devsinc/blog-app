@@ -37,5 +37,12 @@ en:
   post_destroy: "Post was successfully destroyed."  
   resource_not_found: "Your requested resource does not exist."
   invalid_file_format: "Please upload jpeg, jpg or png files."
-  invalid_file_size: "File size should be less than 4MB"
+  invalid_file_size: "File size should be less than 4MB."
+  comment_created: "Your comment has been added."
+  comment_deleted: "You comment was deleted."
+  comment_updated: "Comment status updated."
+  post_published: "Post was successfully published."
+  suggestion_destroy: "Suggestion was removed."
+  suggestion_applied: "Suggestion was applied."
+  suggestion_not_applied: "Unfortunately, suggestion could not be applied. Try again."
   
