@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SuggestionsController < ApplicationController
-  before_action :set_suggestion, only: %i[apply destroy remove]
+  before_action :set_suggestion, only: %i[apply destroy]
 
   def index
     @suggestions = current_user.suggestions
