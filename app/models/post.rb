@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  scope :active, -> { where(report_status: [nil, 'reported']) }
+
   belongs_to :user
   has_many :suggestions, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
