@@ -22,12 +22,7 @@ class SuggestionsController < ApplicationController
 
   def destroy
     @suggestion.destroy
-    redirect_to post_path(params[:post_id])
-  end
-
-  def remove
-    @suggestion.destroy
-    redirect_to suggestions_path
+    redirect_to request.referer
   end
 
   private

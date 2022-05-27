@@ -16,7 +16,7 @@
         <td><%= suggestion.post.user.email %></td>
         <td><%= suggestion.to_replace %></td>
         <td><%= suggestion.replacement %></td>
-        <td><%= link_to 'Remove', remove_suggestion_path(suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%></td>
+        <td><%= link_to 'Remove', post_suggestion_path(suggestion.post_id,suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%></td>
         </tr>
         <% end %>
     </tbody>
