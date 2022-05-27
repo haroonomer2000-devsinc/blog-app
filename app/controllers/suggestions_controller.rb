@@ -16,12 +16,21 @@ class SuggestionsController < ApplicationController
   def apply
     @post = Post.find(params[:post_id])
     @post.apply_suggestion(@suggestion)
+    flash[:alert] = if @post.save
+                      I18n.t(:suggestion_applied)
+                    else
+                      I18n.t(:suggestion_not_applied)
+                    end
     @suggestion.destroy
     redirect_to post_path(params[:post_id])
   end
 
   def destroy
-    @suggestion.destroy
+    flash[:alert] = if @suggestion.destroy
+                      I18n.t(:suggestion_destroy)
+                    else
+                      @suggestion.errors.full_messages.to_sentence
+                    end
     redirect_to request.referer
   end
 
