@@ -63,11 +63,7 @@ class PostsController < ApplicationController
 
   def set_status
     @post.report_status = params[:status]
-    flash[:alert] = if @post.save
-                      I18n.t(:post_update)
-                    else
-                      @post.errors.full_messages.to_sentence
-                    end
+    flash[:alert] = @suggestion.errors.full_messages.to_sentence unless @post.save
     redirect_to post_path(params[:id])
   end
 
