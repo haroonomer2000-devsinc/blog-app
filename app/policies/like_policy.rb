@@ -9,15 +9,15 @@ class LikePolicy < ApplicationPolicy
   end
 
   def create?
-    @user.id == @record.user_id
+    destroy?
   end
 
   def edit?
-    update?
+    destroy?
   end
 
   def update?
-    @user.id == @record.user_id
+    destroy?
   end
 
   def destroy?

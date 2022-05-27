@@ -9,7 +9,7 @@ class SuggestionPolicy < ApplicationPolicy
   end
 
   def create?
-    @user.id == @record.user_id
+    destroy?
   end
 
   def edit?
