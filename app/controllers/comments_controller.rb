@@ -10,12 +10,14 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize @comment
     @comment.status = params[:status]
     @comment.save
     redirect_to post_path(params[:post_id])
   end
 
   def destroy
+    authorize @comment
     @comment.destroy
     redirect_to post_path(params[:post_id])
   end
