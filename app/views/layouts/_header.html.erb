@@ -7,33 +7,33 @@
     <div class='collapse navbar-collapse' id='navbarNav'>
       <ul class='navbar-nav'>
         <% if current_user %>
+          <li class='nav-item'>
+            <%= link_to 'Posts', posts_path ,class:'nav-link'%>
+          </li>
+          <li class='nav-item'>
+            <%= link_to 'Pending', pending_posts_path, class:'nav-link' %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to 'My Suggestions', suggestions_path, class:'nav-link' %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class:'nav-link' %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to 'Edit Profile', edit_user_registration_path, class:'nav-link' %>
+          </li>
+          <% if current_user.role == 'admin'%>
             <li class='nav-item'>
-                <%= link_to 'Posts', posts_path ,class:'nav-link'%>
+              <%= link_to 'Admin', rails_admin_path, class:'nav-link' %>
             </li>
-            <li class='nav-item'>
-                  <%= link_to 'Pending', pending_posts_path, class:'nav-link' %>
-            </li>
-            <li class='nav-item'>
-                  <%= link_to 'My Suggestions', suggestions_path, class:'nav-link' %>
-            </li>
-            <li class='nav-item'>
-                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class:'nav-link' %>
-            </li>
-            <li class='nav-item'>
-                <%= link_to 'Edit Profile', edit_user_registration_path, class:'nav-link' %>
-            </li>
-            <% if current_user.role == 'admin'%>
-              <li class='nav-item'>
-                  <%= link_to 'Admin', rails_admin_path, class:'nav-link' %>
-              </li>
-            <% end %>
+          <% end %>
         <% else %>
-            <li class='nav-item'>
-                <%= link_to 'Log In', new_user_session_path, class:'nav-link' %>
-            </li>
-            <li class='nav-item'>
-                <%= link_to 'Sign Up', new_user_registration_path, class:'nav-link' %>
-            </li>
+          <li class='nav-item'>
+            <%= link_to 'Log In', new_user_session_path, class:'nav-link' %>
+          </li>
+          <li class='nav-item'>
+            <%= link_to 'Sign Up', new_user_registration_path, class:'nav-link' %>
+          </li>
         <% end %>
       </ul>
     </div>

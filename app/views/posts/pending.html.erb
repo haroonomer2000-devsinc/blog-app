@@ -1,13 +1,10 @@
-<h2>Pending posts</h2>
-<br/>
+<h2>Pending posts</h2><br/>
 
 <% @pending_posts.includes(:user).each do |post| %>
   <%= render partial: 'posts/post', locals: { post: post, page: 'pending' } %>
-<% end %>
+<% end %><br/>
 
-<br/>
-<%= link_to 'Back', posts_path, class:'btn btn-primary' %>
-<br/><br/>
+<%= link_to 'Back', posts_path, class:'btn btn-primary' %><br/><br/>
 
 <!-- Pagination -->
 <div class='pagination'>
