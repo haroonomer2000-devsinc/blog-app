@@ -1,13 +1,10 @@
-<h2>Recent posts</h2>
-<br/>
+<h2>Recent posts</h2><br/>
 
 <% @posts.each do |post| %>
   <%= render partial: 'posts/post', locals: { post: post, page: 'index' } %>
-<% end %>
+<% end %><br>
 
-<br>
-<%= link_to 'New Post', new_post_path, class:'btn btn-primary' %>
-<br><br><br>
+<%= link_to 'New Post', new_post_path, class:'btn btn-primary' %><br><br><br>
 
 <div class='pagination'>
   <%= paginate @posts, theme: 'twitter-bootstrap-4' %>

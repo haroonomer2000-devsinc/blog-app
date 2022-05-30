@@ -3,18 +3,15 @@
   <div class='form-group'>
     <%= form.label :'To replace', class:'form-label' %>
     <%= form.text_field :to_replace, class:'form-control', placeholder: 'to replace ...', :required => true %>
-  </div>
-
-  <br/>
+  </div><br/>
+  
   <div class='form-group'>
     <%= form.label :'Replacement', class:'form-label' %>
     <%= form.text_field :replacement, class:'form-control', placeholder: 'replacement ...', :required => true %>
-  </div>
+  </div><br/>
 
-  <br/>
   <div class='form-group'>
     <%= form.submit 'Submit', class:'btn btn-primary' %>
-  </div>
+  </div><br/>
 
-  <br/>
 <% end %>
