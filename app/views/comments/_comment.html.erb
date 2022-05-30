@@ -28,7 +28,7 @@
         <%= render 'comments/form', locals: {post: @post, parent: @parent = comment} %>
       </div>
 
-      <%= render partial: 'likes/button', locals: { likeable: comment } %>
+      <%= render partial: 'likes/button', locals: { likeable: comment, like: current_user.likes.find_by(likeable: comment) } %>
 
       <div class='sub-comment'>
         <%= render comment.comments.active %>
