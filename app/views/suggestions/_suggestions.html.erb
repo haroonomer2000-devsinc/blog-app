@@ -1,26 +1,26 @@
 <% if @post.suggestions.any? %>
-    <table class="table">
+  <table class='table'>
     <thead>
-        <tr>
-        <th scope="col">Suggested by</th>
-        <th scope="col">To Replace</th>
-        <th scope="col">Replacement</th>
-        <th scope="col">Handle</th>
-        </tr>
+      <tr>
+        <th scope='col'>Suggested by</th>
+        <th scope='col'>To Replace</th>
+        <th scope='col'>Replacement</th>
+        <th scope='col'>Handle</th>
+      </tr>
     </thead>
     <tbody>
-        <% @post.suggestions.each do |suggestion| %>
+      <% @post.suggestions.each do |suggestion| %>
         <tr>
-        <td><%= suggestion.user.email %></td>
-        <td><%= suggestion.to_replace %></td>
-        <td><%= suggestion.replacement %></td>
-        <td><%= link_to 'Approve', apply_post_suggestion_path(@post, suggestion.id), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-success"%> <%= link_to 'Deny', post_suggestion_path(@post,suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%></td>
+          <td><%= suggestion.user.email %></td>
+          <td><%= suggestion.to_replace %></td>
+          <td><%= suggestion.replacement %></td>
+          <td><%= link_to 'Approve', apply_post_suggestion_path(@post, suggestion.id), method: :patch, data: { confirm: 'Are you sure?' }, class:'btn btn-success'%> <%= link_to 'Deny', post_suggestion_path(@post,suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'%></td>
         </tr>
-        <% end %>
+      <% end %>
     </tbody>
-    </table>
+  </table>
 <% else %>
-  <blockquote class="blockquote">
+  <blockquote class='blockquote'>
     <p>No suggestions for this post</p>
   </blockquote>
 <% end %>

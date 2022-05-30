@@ -4,7 +4,7 @@ You may need to configure according to details mentioned below to run this local
 
 * Ruby version (2.5.9)
 
-* Ruby version (5.2.7)
+* Rails version (5.2.7)
 
 * Gem dependencies
 

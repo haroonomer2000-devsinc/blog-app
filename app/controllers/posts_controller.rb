@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.PUBLISHED.active.order(id: :desc).page(params[:page]).per(4)
+    @posts = Post.PUBLISHED.active.order(id: :desc).includes(:user).page(params[:page]).per(4)
   end
 
   # GET /posts/new
@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    authorize @post
 
     respond_to do |format|
       if @post.save
@@ -62,26 +63,34 @@ class PostsController < ApplicationController
 
   def set_status
     @post.report_status = params[:status]
-    @post.save
+    flash[:alert] = @suggestion.errors.full_messages.to_sentence unless @post.save
     redirect_to post_path(params[:id])
   end
 
   def pending
     @pending_posts = if current_user.role == 'moderator'
-                       Post.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
+                       Post.UNPUBLISHED.order(id: :desc).includes(:user).page(params[:page]).per(4)
                      else
-                       current_user.posts.UNPUBLISHED.order(id: :desc).page(params[:page]).per(4)
+                       current_user.posts.UNPUBLISHED.order(id: :desc).includes(:user).page(params[:page]).per(4)
                      end
   end
 
   def publish
     @post.publish_post
-    @post.save
+    flash[:alert] = if @post.save
+                      I18n.t(:post_published)
+                    else
+                      @post.errors.full_messages.to_sentence
+                    end
     redirect_to pending_posts_path
   end
 
   def remove
-    @post.destroy
+    flash[:alert] = if @post.destroy
+                      I18n.t(:post_destroy)
+                    else
+                      @post.errors.full_messages.to_sentence
+                    end
     redirect_to pending_posts_path
   end
 
