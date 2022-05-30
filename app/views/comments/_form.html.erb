@@ -1,8 +1,8 @@
 
 <%= form_with(model: @post, local: true, url: post_comments_path(@post.id), method: :post) do |form| %>
  
-  <div class="form-group">
-    <%= form.text_field :body, class:"form-control", placeholder: "Add a comment", :required => true %>
+  <div class='form-group'>
+    <%= form.text_field :body, class:'form-control', placeholder: 'Add a comment', :required => true %>
   </div>
 
   <% unless @parent.nil? %>
@@ -10,16 +10,16 @@
   <% end %>
 
   <br/>
-  <div class="form-group">
-    <%= form.label :attachments, class:"form-label" %>
-    <%= form.file_field :files, class:"form-control", 
+  <div class='form-group'>
+    <%= form.label :attachments, class:'form-label' %>
+    <%= form.file_field :files, class:'form-control', 
         accept: 'image/jpg, image/jpeg, image/png', 
         multiple: true %>
   </div>
 
   <br/>
-  <div class="form-group">
-    <%= form.submit "Post", class:'btn btn-primary' %>
+  <div class='form-group'>
+    <%= form.submit 'Post', class:'btn btn-primary' %>
   </div>
 
   <br/>

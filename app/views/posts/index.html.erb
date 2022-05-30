@@ -2,13 +2,13 @@
 <br/>
 
 <% @posts.each do |post| %>
-  <%= render partial: 'posts/post', locals: { post: post, page: "index" } %>
+  <%= render partial: 'posts/post', locals: { post: post, page: 'index' } %>
 <% end %>
 
 <br>
-<%= link_to 'New Post', new_post_path, class:"btn btn-primary" %>
+<%= link_to 'New Post', new_post_path, class:'btn btn-primary' %>
 <br><br><br>
 
-<div class="pagination">
+<div class='pagination'>
   <%= paginate @posts, theme: 'twitter-bootstrap-4' %>
 </div>

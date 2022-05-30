@@ -1,63 +1,63 @@
-<div class="card mb-3" style="max-width: 90%;">
-<div class="row g-0">
-    <div class="col-md-12">
-    <div class="card-body">
+<div class='card mb-3' style='max-width: 90%;'>
+<div class='row g-0'>
+    <div class='col-md-12'>
+    <div class='card-body'>
         
         <!-- Post details -->
-        <h5 class="card-title"><%= post.title %></h5>
+        <h5 class='card-title'><%= post.title %></h5>
         <p><b>Posted by: </b><%= post.user.email %></p>
-        <p class="card-text"><%= post.description %></p>
-        <p class="card-text"><small class="text-muted">Posted <%= post.published_at ? (time_ago_in_words(post.created_at)) : time_ago_in_words(post.created_at)  %> ago </small></p>
-        <p class="card-text"><small class="text-muted">Last Updated <%= time_ago_in_words(post.updated_at) %> ago </small></p>
+        <p class='card-text'><%= post.description %></p>
+        <p class='card-text'><small class='text-muted'>Posted <%= post.published_at ? (time_ago_in_words(post.created_at)) : time_ago_in_words(post.created_at)  %> ago </small></p>
+        <p class='card-text'><small class='text-muted'>Last Updated <%= time_ago_in_words(post.updated_at) %> ago </small></p>
 
         <!-- Cloudinary files -->
         <% if post.files.attached? %>
           <% post.files.each do |file| %>
-              <%= cl_image_tag file.key, :width=>150, :crop=>"fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
+              <%= cl_image_tag file.key, :width=>150, :crop=>'fill', :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
           <% end %>
           <% end %>
         <br/><br/>
         
-        <% if page == "index" %>
-          <%= link_to 'Show', post, class:"btn btn-primary" %>
+        <% if page == 'index' %>
+          <%= link_to 'Show', post, class:'btn btn-primary' %>
           <!-- Moderator can remove posts -->
-          <% if current_user.role == "moderator" %>
+          <% if current_user.role == 'moderator' %>
           <br/><br/>
-          <%= link_to 'Remove', remove_post_path(post), method: :delete, class:"btn btn-danger",  data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Remove', remove_post_path(post), method: :delete, class:'btn btn-danger',  data: { confirm: 'Are you sure?' } %>
           <% end %>
   
         <!-- Publish or unpublish posts for moderator -->
-        <% elsif page == "pending" %>
-            <% if current_user.role == "moderator" %>
+        <% elsif page == 'pending' %>
+            <% if current_user.role == 'moderator' %>
                 <br/><br/>
-                <%= link_to 'Publish', publish_post_path(post), method: :patch, class:"btn btn-success",  data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Publish', publish_post_path(post), method: :patch, class:'btn btn-success',  data: { confirm: 'Are you sure?' } %>
                 <br/><br/>
-                <%= link_to 'Remove', remove_post_path(post), method: :delete, class:"btn btn-danger",  data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Remove', remove_post_path(post), method: :delete, class:'btn btn-danger',  data: { confirm: 'Are you sure?' } %>
             <% end %>
 
         <% else %>
             <!-- Show reported posts for the moderator -->
-            <% if current_user.role == "moderator" && post.report_status == "reported" %>
+            <% if current_user.role == 'moderator' && post.report_status == 'reported' %>
                 <%= render partial: 'reported', locals: {post: post} %>
                 <br/><br/>
             <% end %>
 
             <!-- Show post suggestions to post owner -->
             <% if current_user.id == post.user_id && post.PUBLISHED? %>
-                <a class="suggestions-display" href="#">Show Suggestions</a>
-                <div class="suggestion-form">
+                <a class='suggestions-display' href='#'>Show Suggestions</a>
+                <div class='suggestion-form'>
                 <%= render partial: 'suggestions/suggestions', locals: {post: post} %>
                 </div><br/><br/>
-                <%= link_to 'Edit', edit_post_path(post), class:"btn btn-warning" %>
-                <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+                <%= link_to 'Edit', edit_post_path(post), class:'btn btn-warning' %>
+                <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %>
             
             <!-- Add suggestions if post not owned -->
             <% elsif current_user.id != post.user_id %>
-                <a class="suggestion-form-display" href="#">Add Suggestion</a>
-                <div class="suggestion-form">
+                <a class='suggestion-form-display' href='#'>Add Suggestion</a>
+                <div class='suggestion-form'>
                 <%= render partial: 'suggestions/form', locals: {post: post} %>
                 </div><br/><br/>
-                <%= link_to 'Report', set_status_post_path(post.id, status: "reported"), method: :patch, data: { confirm: 'Are you sure?' } %>
+                <%= link_to 'Report', set_status_post_path(post.id, status: 'reported'), method: :patch, data: { confirm: 'Are you sure?' } %>
             <% end %>
         <% end %>
 

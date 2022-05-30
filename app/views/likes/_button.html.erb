@@ -1,15 +1,14 @@
-
 <% like = current_user.likes.find_by(likeable: likeable) %>
 
 <% if like.nil? %>
-  <form action="/likes" method="post" data-remote="true">
-    <input type="hidden", name="authenticity_token", value="<%= form_authenticity_token %>">
-    <input type="hidden", name="like[likeable_id]", value="<%= likeable.id %>">
-    <input type="hidden", name="like[likeable_type]", value="<%= likeable.class.to_s %>">
-    <input type="submit", value="Like", class="btn btn-link">
+  <form action='/likes' method='post' data-remote='true'>
+    <input type='hidden', name='authenticity_token', value='<%= form_authenticity_token %>'>
+    <input type='hidden', name='like[likeable_id]', value='<%= likeable.id %>'>
+    <input type='hidden', name='like[likeable_type]', value='<%= likeable.class.to_s %>'>
+    <input type='submit', value='Like', class='btn btn-link'>
   </form>
 <% else %>
-  <%= link_to 'Unlike', like_path(like), method: :delete, class:"btn btn-link", remote: :true %>
+  <%= link_to 'Unlike', like_path(like), method: :delete, class:'btn btn-link', remote: :true %>
 <% end %>
 
 <div>

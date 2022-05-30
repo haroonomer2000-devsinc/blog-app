@@ -2,14 +2,14 @@
 <br/>
 
 <% @pending_posts.includes(:user).each do |post| %>
-  <%= render partial: 'posts/post', locals: { post: post, page: "pending" } %>
+  <%= render partial: 'posts/post', locals: { post: post, page: 'pending' } %>
 <% end %>
 
 <br/>
-<%= link_to 'Back', posts_path, class:"btn btn-primary" %>
+<%= link_to 'Back', posts_path, class:'btn btn-primary' %>
 <br/><br/>
 
 <!-- Pagination -->
-<div class="pagination">
+<div class='pagination'>
   <%= paginate @pending_posts, theme: 'twitter-bootstrap-4' %>
 </div>

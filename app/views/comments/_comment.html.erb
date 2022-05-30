@@ -1,17 +1,17 @@
-<ul class="list-group">
-  <li class="list-group-item comment">
+<ul class='list-group'>
+  <li class='list-group-item comment'>
 
     <!-- Comment details -->
     <strong><%= comment.user.email %>: </strong><%= comment.body %>
     <span>
-      <p class="card-text">
-          <small class="text-muted">Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
+      <p class='card-text'>
+          <small class='text-muted'>Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
       </p>
 
       <!-- Cloudinary files -->
       <% if comment.files.attached? %>
         <% comment.files.each do |file| %>
-            <%= cl_image_tag file.key, :width=>150, :crop => "fill", :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
+            <%= cl_image_tag file.key, :width=>150, :crop => 'fill', :cloud_name => Rails.application.credentials.cloudinary[:cloud_name] %>
         <% end %>
         <br/><br/>
       <% end %>
@@ -20,19 +20,19 @@
       <% if current_user.id == comment.user.id %>  
        <%= link_to 'Delete', post_comment_path(comment.post_id,comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% else %>
-       <%= link_to 'Report', post_comment_path(comment.post_id,comment.id, status: "reported"), method: :patch, data: { confirm: 'Are you sure?' } %>
+       <%= link_to 'Report', post_comment_path(comment.post_id,comment.id, status: 'reported'), method: :patch, data: { confirm: 'Are you sure?' } %>
       <% end %>
       <br/><br/>
 
       <!-- Reply comment -->
-      <a class="comment-form-display" href="#">Reply</a>
-      <div class="comment-form">
+      <a class='comment-form-display' href='#'>Reply</a>
+      <div class='comment-form'>
         <%= render 'comments/form', locals: {post: @post, parent: @parent = comment} %>
       </div>
 
       <%= render partial: 'likes/button', locals: { likeable: comment } %>
 
-      <div class="sub-comment">
+      <div class='sub-comment'>
           <%= render comment.comments.active %>
       </div>
     </span>

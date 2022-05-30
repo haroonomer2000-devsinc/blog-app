@@ -1,13 +1,13 @@
 <h3>Your active suggestions</h3><hr/><br/>
 
 <% if @suggestions.any? %>
-    <table class="table">
+    <table class='table'>
     <thead>
         <tr>
-        <th scope="col">Post owner</th>
-        <th scope="col">To Replace</th>
-        <th scope="col">Replacement</th>
-        <th scope="col">Handle</th>
+        <th scope='col'>Post owner</th>
+        <th scope='col'>To Replace</th>
+        <th scope='col'>Replacement</th>
+        <th scope='col'>Handle</th>
         </tr>
     </thead>
     <tbody>
@@ -16,13 +16,13 @@
         <td><%= suggestion.post.user.email %></td>
         <td><%= suggestion.to_replace %></td>
         <td><%= suggestion.replacement %></td>
-        <td><%= link_to 'Remove', post_suggestion_path(suggestion.post_id,suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"%></td>
+        <td><%= link_to 'Remove', post_suggestion_path(suggestion.post_id,suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'%></td>
         </tr>
         <% end %>
     </tbody>
     </table>
 <% else %>
-  <blockquote class="blockquote">
+  <blockquote class='blockquote'>
     <p>You do not have any active suggestions</p>
   </blockquote>
 <% end %>

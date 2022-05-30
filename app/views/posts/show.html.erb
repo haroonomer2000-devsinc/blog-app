@@ -1,4 +1,4 @@
-<%= render partial: 'posts/post', locals: { post: @post, page: "show" } %>
+<%= render partial: 'posts/post', locals: { post: @post, page: 'show' } %>
 
 <!-- Comments sections -->
 
@@ -12,9 +12,9 @@
 
   <!-- Show reported comments for the post owner -->
   <% if current_user.id == @post.user_id && @post.PUBLISHED? %>
-    <a class="reported-display" href="#">Show Reported Comments</a>
-    <div class="suggestion-form">
-      <%= render partial:'comments/reported', locals: {comments: @post.comments.where(status: "reported")} %>
+    <a class='reported-display' href='#'>Show Reported Comments</a>
+    <div class='suggestion-form'>
+      <%= render partial:'comments/reported', locals: {comments: @post.comments.where(status: 'reported')} %>
     </div><br/><br/>
   <% end %>
 
@@ -28,5 +28,5 @@
 <% end %>
 
 <br/>
-<%= link_to 'Back', posts_path, class:"btn btn-primary" %>
+<%= link_to 'Back', posts_path, class:'btn btn-primary' %>
 <br/><br/>
