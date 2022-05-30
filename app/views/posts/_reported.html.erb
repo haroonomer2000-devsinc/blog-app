@@ -1,8 +1,10 @@
-<ul class="list-group">
-  <li class="list-group-item">Post has been reported<span>
-  <div class="report-approval">
-      <%= link_to 'Accept', set_status_post_path(post.id, status: "hidden"), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-success" %>
-      <%= link_to 'Deny', set_status_post_path(post.id, status: nil), method: :patch, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
-  </div>
-  </span></li>
+<ul class='list-group'>
+  <li class='list-group-item'>Post has been reported
+    <span>
+      <div class='report-approval'>
+        <%= link_to 'Accept', set_status_post_path(post.id, status: 'hidden'), method: :patch, data: { confirm: 'Are you sure?' }, class:'btn btn-success' %>
+        <%= link_to 'Deny', set_status_post_path(post.id, status: nil), method: :patch, data: { confirm: 'Are you sure?' }, class:'btn btn-danger' %>
+      </div>
+    </span>
+  </li>
 </ul>

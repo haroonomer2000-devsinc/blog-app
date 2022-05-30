@@ -5,18 +5,28 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params.merge(post_id: params[:post_id]))
-    flash[:alert] = @comment.errors.full_messages.to_sentence unless @comment.save
+    flash[:alert] = if @comment.save
+                      I18n.t(:comment_created)
+                    else
+                      @comment.errors.full_messages.to_sentence
+                    end
     redirect_to post_path(params[:post_id])
   end
 
   def update
+    authorize @comment
     @comment.status = params[:status]
-    @comment.save
+    flash[:alert] = @suggestion.errors.full_messages.to_sentence unless @comment.save
     redirect_to post_path(params[:post_id])
   end
 
   def destroy
-    @comment.destroy
+    authorize @comment
+    flash[:alert] = if @comment.destroy
+                      I18n.t(:comment_deleted)
+                    else
+                      @comment.errors.full_messages.to_sentence
+                    end
     redirect_to post_path(params[:post_id])
   end
 

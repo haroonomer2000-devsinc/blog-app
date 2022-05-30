@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class PostPolicy < ApplicationPolicy
+class SuggestionPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
-    # scope.all
+    #   scope.all
     # end
   end
 
@@ -13,11 +13,11 @@ class PostPolicy < ApplicationPolicy
   end
 
   def edit?
-    destroy?
+    update?
   end
 
   def update?
-    destroy?
+    @user.id != @record.user_id
   end
 
   def destroy?

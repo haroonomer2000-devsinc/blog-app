@@ -1,20 +1,17 @@
-<%= render partial: 'posts/post', locals: { post: @post, page: "show" } %>
+<%= render partial: 'posts/post', locals: { post: @post, page: 'show' } %>
 
 <!-- Comments sections -->
 
 <% if @post.PUBLISHED? %>
 
-  <%= render partial: 'likes/button', locals: { likeable: @post } %>
-
-  <br/>
-  <h3>Comments</h3>
-  <hr/><br/>
+  <%= render partial: 'likes/button', locals: { likeable: @post, like: current_user.likes.find_by(likeable: @post) } %><br/>
+  <h3>Comments</h3><hr/><br/>
 
   <!-- Show reported comments for the post owner -->
   <% if current_user.id == @post.user_id && @post.PUBLISHED? %>
-    <a class="reported-display" href="#">Show Reported Comments</a>
-    <div class="suggestion-form">
-      <%= render partial:'comments/reported', locals: {comments: @post.comments.where(status: "reported")} %>
+    <a class='reported-display' href='#'>Show Reported Comments</a>
+    <div class='suggestion-form'>
+      <%= render partial:'comments/reported', locals: {comments: @post.comments.reported} %>
     </div><br/><br/>
   <% end %>
 
@@ -25,8 +22,6 @@
   <h3>Add comment</h3><hr/><br/>
   <%= render 'comments/form', locals: {post: @post, parent: @parent = nil} %>
 
-<% end %>
+<% end %><br/>
 
-<br/>
-<%= link_to 'Back', posts_path, class:"btn btn-primary" %>
-<br/><br/>
+<%= link_to 'Back', posts_path, class:'btn btn-primary' %><br/><br/>
