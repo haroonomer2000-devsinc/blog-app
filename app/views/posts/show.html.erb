@@ -16,7 +16,7 @@
   <% end %>
 
   <!-- Show all comments -->
-  <%= render @post.comments.where(parent_id: nil).active.includes(:user).order(id: :desc) %><br/>
+  <%= render @post.comments.top.active.includes(:user).order(id: :desc) %><br/>
 
   <!-- Add comment form -->
   <h3>Add comment</h3><hr/><br/>

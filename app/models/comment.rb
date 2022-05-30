@@ -15,4 +15,5 @@ class Comment < ApplicationRecord
                                          message: I18n.t(:invalid_file_format) }
   
   scope :active, -> { where(status: [nil, 'reported']) }
+  scope :top, -> { where(parent_id: nil) }
 end
