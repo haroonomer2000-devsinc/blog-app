@@ -16,4 +16,5 @@ class Comment < ApplicationRecord
   
   scope :active, -> { where(status: [nil, 'reported']) }
   scope :top, -> { where(parent_id: nil) }
+  scope :reported, -> { where(status: 'reported') }
 end

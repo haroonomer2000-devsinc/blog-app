@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
     authorize @comment
     @comment.status = params[:status]
     flash[:alert] = @suggestion.errors.full_messages.to_sentence unless @comment.save
+    redirect_to post_path(params[:post_id])
   end
 
   def destroy
