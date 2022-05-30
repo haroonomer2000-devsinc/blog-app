@@ -4,7 +4,7 @@
 
 <% if @post.PUBLISHED? %>
 
-  <%= render partial: 'likes/button', locals: { likeable: @post } %><br/>
+  <%= render partial: 'likes/button', locals: { likeable: @post, like: current_user.likes.find_by(likeable: @post) } %><br/>
   <h3>Comments</h3><hr/><br/>
 
   <!-- Show reported comments for the post owner -->
