@@ -11,12 +11,12 @@
   <% if current_user.id == @post.user_id && @post.PUBLISHED? %>
     <a class='reported-display' href='#'>Show Reported Comments</a>
     <div class='suggestion-form'>
-      <%= render partial:'comments/reported', locals: {comments: @post.comments.where(status: 'reported')} %>
+      <%= render partial:'comments/reported', locals: {comments: @post.comments.reported} %>
     </div><br/><br/>
   <% end %>
 
   <!-- Show all comments -->
-  <%= render @post.comments.top.active.includes(:user).order(id: :desc) %><br/>
+  <%= render @post.comments.where(parent_id: nil).active.includes(:user).order(id: :desc) %><br/>
 
   <!-- Add comment form -->
   <h3>Add comment</h3><hr/><br/>
