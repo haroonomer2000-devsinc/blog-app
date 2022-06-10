@@ -4,7 +4,7 @@ RSpec.describe "Posts Controller", type: :request do
   fixtures :all
  
   before(:each) do 
-    user = users(:regular)
+    user = users(:moderator)
     user.confirm
     sign_in user
   end
@@ -13,13 +13,13 @@ RSpec.describe "Posts Controller", type: :request do
     {
       'id' => '4',
       'title' => "Test Post 4",
-      'description' => "This is the description of post number 4", 'user_id'=> 175178709, 
+      'description' => "This is the description of post number 4", 'user_id'=> 707834473, 
       'status' => 0 
     }
   end
   let(:invalid_post) do
     {
-      'description' => "This is the description of post number 4", 'user_id'=> 175178709, 
+      'description' => "This is the description of post number 4", 'user_id'=> 707834473, 
       'status' => 0 
     }
   end
@@ -41,7 +41,7 @@ RSpec.describe "Posts Controller", type: :request do
 
   context "Post show path" do 
     it "GET Posts#show, should get the post by id" do
-      post_id = 1
+      post_id = 134
       get post_path(post_id)
       expect(response).to have_http_status(200)
     end
@@ -56,9 +56,9 @@ RSpec.describe "Posts Controller", type: :request do
 
   context "Post edit path" do 
     it "GET Posts#edit, should get the edit post page" do
-      post_id = 1
+      post_id = 134
       get edit_post_path(post_id)
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(302)
     end
   end
 
@@ -96,7 +96,7 @@ RSpec.describe "Posts Controller", type: :request do
         {
           'id' => '4',
           'title' => "Test Post 4 Updated",
-          'description' => "This is the description of post number 4", 'user_id'=> 175178709, 
+          'description' => "This is the description of post number 4", 'user_id'=> 707834473, 
           'status' => 0 
         }
       end
@@ -140,7 +140,45 @@ RSpec.describe "Posts Controller", type: :request do
     end
   end
 
-  
+  describe 'GET /pending_posts' do
+    it 'redirects to pending posts page for normal user' do
+      get pending_posts_url
+      expect(response).to have_http_status(200)
+    end
+
+    it 'redirects to pending posts page for normal user' do
+      get pending_posts_url
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe 'PATCH /set_status' do
+    it 'redirects to post page' do
+      post = Post.new(valid_post)
+      post.save
+      patch set_status_post_path(post, status: 'reported')
+      expect(response).to redirect_to(post_path(post))
+    end
+  end
+
+  describe 'PATCH /publish' do
+    it 'redirects to pending posts page if published' do
+      post = Post.new(valid_post)
+      post.save
+      patch publish_post_path(post)
+      expect(response).to redirect_to(pending_posts_path)
+    end
+  end
+
+  describe 'PATCH /destroy' do
+    it 'redirects to pending posts page if removed' do
+      post = Post.new(valid_post)
+      post.save
+      delete remove_post_path(post)
+      expect(response).to redirect_to(pending_posts_path)
+    end
+  end
+
 end
 
  # assert_response :redirect
