@@ -17,6 +17,7 @@ gem 'pundit'
 gem 'rails_admin'
 gem 'rubocop-performance', '~> 1.13', '>= 1.13.3'
 gem 'rubocop-rails', '~> 2.14', '>= 2.14.2'
+gem 'simplecov', '~> 0.21.2', require: false, group: :test
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.7'
