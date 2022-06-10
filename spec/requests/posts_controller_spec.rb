@@ -9,6 +9,21 @@ RSpec.describe "Posts Controller", type: :request do
     sign_in user
   end
 
+  let(:valid_post) do
+    {
+      'id' => '4',
+      'title' => "Test Post 4",
+      'description' => "This is the description of post number 4", 'user_id'=> 175178709, 
+      'status' => 0 
+    }
+  end
+  let(:invalid_post) do
+    {
+      'description' => "This is the description of post number 4", 'user_id'=> 175178709, 
+      'status' => 0 
+    }
+  end
+
   context "Post index path (logged out user)" do 
     it "GET Posts#index (logged out user), should be redirected to login page" do 
       sign_out :user
@@ -47,21 +62,6 @@ RSpec.describe "Posts Controller", type: :request do
     end
   end
 
-  let(:valid_post) do
-    {
-      'title' => "Test Post 3",
-      'description' => "This is the description of post number 2", 'user_id'=> 175178709, 
-      'status' => 0 
-    }
-  end
-
-  let(:invalid_post) do
-    {
-      'description' => "This is the description of post number 2", 'user_id'=> 175178709, 
-      'status' => 0 
-    }
-  end
-
   describe 'POST /create' do
     context "Post create path with valid attributes" do 
       it 'creates a new Post' do
@@ -90,8 +90,60 @@ RSpec.describe "Posts Controller", type: :request do
     end
   end   
 
-    
-    # assert_response :redirect
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        {
+          'id' => '4',
+          'title' => "Test Post 4 Updated",
+          'description' => "This is the description of post number 4", 'user_id'=> 175178709, 
+          'status' => 0 
+        }
+      end
+
+      it 'updates the requested post' do
+        post = Post.new(valid_post)
+        patch post_url(post), params: { post: new_attributes }
+        expect(response).to have_http_status(302)
+      end
+
+      it 'redirects to the post' do
+        post = Post.new(valid_post)
+        patch post_url(post), params: { post: new_attributes }
+        expect(response).to have_http_status(302)
+      end
+    end
+
+    context 'with invalid parameters' do
+      it "redirects upon unsuccessful updation " do
+        post = Post.create! valid_post
+        patch post_url(post), params: { post: invalid_post }
+        expect(response).to have_http_status(302)
+      end
+    end
+  end
+
+  describe 'DELETE /destroy' do
+    it 'destroys the requested post' do
+      post = Post.new(valid_post)
+      post.save
+      expect do
+        delete post_url(post)
+      end.to change(Post, :count).by(-1)
+    end
+
+    it 'redirects to the posts list' do
+      post = Post.new(valid_post)
+      post.save
+      delete post_url(post)
+      expect(response).to redirect_to(posts_url)
+    end
+  end
+
+  
+end
+
+ # assert_response :redirect
     # it "ensures title present" do 
     #   sign_in temp
     #   get new_post_path
@@ -104,5 +156,3 @@ RSpec.describe "Posts Controller", type: :request do
   #     get posts_path 
   #     assert_response :success
   #   end
-
-end
