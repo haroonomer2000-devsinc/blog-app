@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :likes, only: %i[create destroy]
+  resources :home do 
+    collection do 
+      get :confirmation
+    end
+  end
   resources :suggestions, only: %i[index create destroy]
   resources :posts do
     collection do
