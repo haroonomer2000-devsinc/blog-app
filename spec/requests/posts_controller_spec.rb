@@ -101,17 +101,12 @@ RSpec.describe "Posts Controller", type: :request do
         }
       end
 
-      it 'updates the requested post' do
+      it 'updates the requested post successfully' do
         post = Post.new(valid_post)
         patch post_url(post), params: { post: new_attributes }
         expect(response).to have_http_status(302)
       end
 
-      it 'redirects to the post' do
-        post = Post.new(valid_post)
-        patch post_url(post), params: { post: new_attributes }
-        expect(response).to have_http_status(302)
-      end
     end
 
     context 'with invalid parameters' do
@@ -141,12 +136,15 @@ RSpec.describe "Posts Controller", type: :request do
   end
 
   describe 'GET /pending_posts' do
-    it 'redirects to pending posts page for normal user' do
+    it 'redirects to pending posts page for moderator' do
       get pending_posts_url
       expect(response).to have_http_status(200)
     end
 
     it 'redirects to pending posts page for normal user' do
+      user = users(:regular)
+      user.confirm
+      sign_in user
       get pending_posts_url
       expect(response).to have_http_status(200)
     end
@@ -180,17 +178,3 @@ RSpec.describe "Posts Controller", type: :request do
   end
 
 end
-
- # assert_response :redirect
-    # it "ensures title present" do 
-    #   sign_in temp
-    #   get new_post_path
-    #   post = Post.new(title: "ABBABABBAC",description: "VCVVCVCVCVVCVVCVCVCVCVCVVCVCVCVCVCVVCVCVCVCVCVVCVCVCVCVCVVCVCVCVCC", user_id: 30, status: 0).save
-    #   expect(post).to eq(true)
-    # end
-  #   it "gets posts index" do 
-  #     sign_out :user
-  #     sign_in users(:regular)
-  #     get posts_path 
-  #     assert_response :success
-  #   end
