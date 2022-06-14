@@ -17,7 +17,7 @@ gem 'pundit'
 gem 'rails_admin'
 gem 'rubocop-performance', '~> 1.13', '>= 1.13.3'
 gem 'rubocop-rails', '~> 2.14', '>= 2.14.2'
-gem 'rubocop-rspec', '~> 2.10'
+gem 'simplecov', '~> 0.21.2', require: false, group: :test
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.7'
@@ -54,6 +54,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
+  gem 'rails-controller-testing'
 end
 
 group :development do
