@@ -1,29 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Posts Controller", type: :request do
-  fixtures :all
  
   before(:each) do 
     @user = FactoryBot.create(:user)
     @valid_post = FactoryBot.create(:post, user_id: @user.id)
     @invalid_post = FactoryBot.create(:post, user_id: @user.id)
     sign_in(@user)
-  end
-
-  let(:valid_post2) do
-    {
-      'description' => "This is the description of post number 4", 
-      'user_id'=> 707834473, 
-      'status' => 0 
-    }
-  end
-  let(:invalid_post2) do
-    {
-      'id' => '4',
-      'description' => "This is description",
-      'user_id'=> 707834473, 
-      'status' => 0 
-    }
   end
 
   context "Post index path (logged out user)" do 
