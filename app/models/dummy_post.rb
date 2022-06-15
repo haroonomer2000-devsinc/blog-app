@@ -1,0 +1,2 @@
+class DummyPost < ApplicationRecord
+end
