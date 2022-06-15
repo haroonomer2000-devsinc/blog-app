@@ -24,7 +24,7 @@ class Post < ApplicationRecord
   end
 
   def publish_post
-    self.PUBLISHED!
+    self.status = 1
     self.published_at = Time.zone.now
   end
 end

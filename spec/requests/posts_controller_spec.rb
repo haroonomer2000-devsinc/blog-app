@@ -13,13 +13,30 @@ RSpec.describe "Posts Controller", type: :request do
     {
       'id' => '4',
       'title' => "Test Post 4",
-      'description' => "This is the description of post number 4", 'user_id'=> 707834473, 
+      'description' => "This is the description of post number 4", 
+      'user_id'=> 707834473, 
+      'status' => 0 
+    }
+  end
+  let(:valid_post2) do
+    {
+      'description' => "This is the description of post number 4", 
+      'user_id'=> 707834473, 
       'status' => 0 
     }
   end
   let(:invalid_post) do
     {
-      'description' => "This is the description of post number 4", 'user_id'=> 707834473, 
+      'description' => "This is the description of post number 4", 
+      'user_id'=> 707834473, 
+      'status' => 0 
+    }
+  end
+  let(:invalid_post2) do
+    {
+      'id' => '4',
+      'description' => "This is description",
+      'user_id'=> 707834473, 
       'status' => 0 
     }
   end
@@ -110,10 +127,18 @@ RSpec.describe "Posts Controller", type: :request do
     end
 
     context 'with invalid parameters' do
+      it "redirects upon successfull updation " do
+        post = Post.create! valid_post
+        patch post_url(post), params: { post: valid_post }
+        expect(response).to have_http_status(302)
+      end
+    end
+
+    context 'with invalid parameters' do
       it "redirects upon unsuccessful updation " do
         post = Post.create! valid_post
-        patch post_url(post), params: { post: invalid_post }
-        expect(response).to have_http_status(302)
+        patch post_url(post), params: { post: invalid_post2 }
+        expect(response).to have_http_status(422)
       end
     end
   end
@@ -163,6 +188,15 @@ RSpec.describe "Posts Controller", type: :request do
     it 'redirects to pending posts page if published' do
       post = Post.new(valid_post)
       post.save
+      patch publish_post_path(post)
+      expect(response).to redirect_to(pending_posts_path)
+    end
+
+    it 'redirects to pending posts page after unsuccessful updation' do
+      post = Post.new(valid_post)
+      post.save
+      post.description = "abc" # too short invalid
+      post.save(validate: false)
       patch publish_post_path(post)
       expect(response).to redirect_to(pending_posts_path)
     end
