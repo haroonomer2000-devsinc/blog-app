@@ -121,6 +121,8 @@ RSpec.describe "Posts Controller", type: :request do
     end
 
     it 'redirects to pending posts page for normal user' do
+      @user = FactoryBot.create(:user, role: nil)
+      sign_in(@user)
       get pending_posts_url
       expect(response).to have_http_status(200)
     end
