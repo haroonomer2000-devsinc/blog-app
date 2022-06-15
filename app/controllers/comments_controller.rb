@@ -5,10 +5,13 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params.merge(post_id: params[:post_id]))
+
+    print(@comment.inspect)
     flash[:alert] = if @comment.save
                       I18n.t(:comment_created)
                     else
                       @comment.errors.full_messages.to_sentence
+                      print(@comment.errors.full_messages.to_sentence)
                     end
     redirect_to post_path(params[:post_id])
   end
