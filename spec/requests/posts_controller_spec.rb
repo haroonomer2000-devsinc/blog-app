@@ -29,12 +29,11 @@ RSpec.describe "Posts Controller", type: :request do
       get post_path(@valid_post.id)
       expect(response).to have_http_status(200)
     end
-  end
 
-  context "Post new path" do 
-    it "GET Posts#new, should get the new post page" do
-      get new_post_path
-      expect(response).to have_http_status(200)
+    it "GET Posts#show, should redirect since post with id 13 does not exist" do
+      @valid_post.id = 13
+      get post_path(@valid_post.id)
+      expect(response).to have_http_status(302)
     end
   end
 
@@ -43,15 +42,20 @@ RSpec.describe "Posts Controller", type: :request do
       get edit_post_path(@valid_post.id)
       expect(response).to have_http_status(200)
     end
+
+    it "GET Posts#edit, should redirect since post with id 13 does not exist" do
+      @valid_post.id = 13
+      get edit_post_path(@valid_post.id)
+      expect(response).to have_http_status(302)
+    end
   end
 
   describe 'POST /create' do
     context "Post create path with valid attributes" do 
       it 'creates a new Post' do
         @valid_post = { id: @valid_post.id, title: @valid_post.title, description: @valid_post.description, user_id: @valid_post.user_id, status: @valid_post.status }
-        expect do 
         post posts_url, params: { post: @valid_post }
-        end.to change(Post, :count).by(1)
+        expect(Post.last.title).to eq(@valid_post[:title])
       end
 
       it 'redirects to the created post if post is valid' do
@@ -101,19 +105,6 @@ RSpec.describe "Posts Controller", type: :request do
     end
   end
 
-  describe 'DELETE /destroy' do
-    it 'destroys the requested post' do
-      expect do
-        delete post_url(@valid_post)
-      end.to change(Post, :count).by(-1)
-    end
-
-    it 'redirects to the posts list' do
-      delete post_url(@valid_post)
-      expect(response).to redirect_to(posts_url)
-    end
-  end
-
   describe 'GET /pending_posts' do
     it 'redirects to pending posts page for moderator' do
       get pending_posts_url
@@ -133,6 +124,12 @@ RSpec.describe "Posts Controller", type: :request do
       patch set_status_post_path(@valid_post, status: 'reported')
       expect(response).to redirect_to(post_path(@valid_post))
     end
+
+    it 'redirects to post page since id is not valid' do
+      @invalid_post = { id: @valid_post.id, title: @valid_post.title, description: :short, user_id: @valid_post.user_id, status: @valid_post.status }
+      patch set_status_post_path(@invalid_post[:id], status: 'reported')
+      expect(response).to redirect_to(post_path(@valid_post.id))
+    end
   end
 
   describe 'PATCH /publish' do
@@ -142,16 +139,37 @@ RSpec.describe "Posts Controller", type: :request do
     end
 
     it 'redirects to pending posts page after unsuccessful updation' do
-      @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }
-      patch publish_post_path(@invalid_post)
+      @valid_post = FactoryBot.build(:post, description: :short)
+      @valid_post.save(validate: false)
+      patch publish_post_path(@valid_post[:id])
       expect(response).to redirect_to(pending_posts_path)
     end
   end
 
-  describe 'PATCH /destroy' do
+  context "Post new path" do 
+    it "GET Posts#new, should get the new post page" do
+      get new_post_path
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  context "Post /remove path" do 
     it 'redirects to pending posts page if removed' do
       delete remove_post_path(@valid_post)
       expect(response).to redirect_to(pending_posts_path)
+    end
+  end
+
+  describe 'DELETE /destroy' do
+    it 'destroys the requested post' do
+      expect do
+        delete post_url(@valid_post)
+      end.to change(Post, :count).by(-1)
+    end
+
+    it 'redirects to the posts list' do
+      delete post_url(@valid_post)
+      expect(response).to redirect_to(posts_url)
     end
   end
 

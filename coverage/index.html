@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2022-06-16T03:13:36+05:00">2022-06-16T03:13:36+05:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2022-06-16T12:33:07+05:00">2022-06-16T12:33:07+05:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="green">
-  94.26%
+  95.26%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.98
+         2.1
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>366</b> relevant lines,
-    <span class="green"><b>345</b> lines covered</span> and
-    <span class="red"><b>21</b> lines missed. </span>
+    <b>380</b> relevant lines,
+    <span class="green"><b>362</b> lines covered</span> and
+    <span class="red"><b>18</b> lines missed. </span>
     (<span class="green">
-  94.26%
+  95.26%
 </span>
 )
   </div>
@@ -83,12 +83,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#550e07389b9c340c0facf7cd0695e3f4b50f353d" class="src_link" title="app/controllers/posts_controller.rb">app/controllers/posts_controller.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">92.86 %</td>
-            <td class="cell--number">112</td>
+            <td class="green strong cell--number t-file__coverage">98.25 %</td>
+            <td class="cell--number">114</td>
+            <td class="cell--number">57</td>
             <td class="cell--number">56</td>
-            <td class="cell--number">52</td>
-            <td class="cell--number">4</td>
-            <td class="cell--number">2.09</td>
+            <td class="cell--number">1</td>
+            <td class="cell--number">2.32</td>
             
           </tr>
         
@@ -451,7 +451,7 @@
             <td class="cell--number">6</td>
             <td class="cell--number">6</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">21.00</td>
+            <td class="cell--number">24.50</td>
             
           </tr>
         
@@ -462,7 +462,7 @@
             <td class="cell--number">6</td>
             <td class="cell--number">6</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">14.83</td>
+            <td class="cell--number">16.83</td>
             
           </tr>
         
@@ -480,11 +480,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#8a92c3ddd674b557600931a1e1b333238ca71f70" class="src_link" title="spec/requests/posts_controller_spec.rb">spec/requests/posts_controller_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">158</td>
-            <td class="cell--number">94</td>
-            <td class="cell--number">94</td>
+            <td class="cell--number">176</td>
+            <td class="cell--number">107</td>
+            <td class="cell--number">107</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.81</td>
+            <td class="cell--number">1.82</td>
             
           </tr>
         
@@ -695,7 +695,7 @@
     <h3>app/controllers/posts_controller.rb</h3>
     <h4>
       <span class="green">
-  92.86%
+  98.25%
 </span>
 
       lines covered
@@ -704,9 +704,9 @@
     
 
     <div class="t-line-summary">
-      <b>56</b> relevant lines.
-      <span class="green"><b>52</b> lines covered</span> and
-      <span class="red"><b>4</b> lines missed.</span>
+      <b>57</b> relevant lines.
+      <span class="green"><b>56</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
 
     
@@ -1383,18 +1383,18 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    else</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="62">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="62">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">      format.html { render :edit, status: :unprocessable_entity }</code>
           </li>
         </div>
       
@@ -1405,29 +1405,29 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="64">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="65">
+            
+            
+
+            
+
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="64">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def set_status</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="65">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    @post.report_status = params[:status]</code>
           </li>
         </div>
       
@@ -1438,13 +1438,35 @@
 
             
 
+            <code class="ruby">  def set_status</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="67">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    @post.report_status = params[:status]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="68">
+            <span class="hits">2</span>
+            
+
+            
+
             <code class="ruby">    flash[:alert] = @suggestion.errors.full_messages.to_sentence unless @post.save</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="67">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="2" data-linenumber="69">
+            <span class="hits">2</span>
             
 
             
@@ -1454,7 +1476,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="68">
+          <li class="never" data-hits="" data-linenumber="70">
             
             
 
@@ -1465,35 +1487,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="69">
+          <li class="never" data-hits="" data-linenumber="71">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="70">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def pending</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="71">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    @pending_posts = if current_user.role == &#39;moderator&#39;</code>
           </li>
         </div>
       
@@ -1504,18 +1504,18 @@
 
             
 
-            <code class="ruby">                       Post.UNPUBLISHED.order(id: :desc).includes(:user).page(params[:page]).per(4)</code>
+            <code class="ruby">  def pending</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="73">
-            
-            
-
+          <li class="covered" data-hits="2" data-linenumber="73">
+            <span class="hits">2</span>
             
 
-            <code class="ruby">                     else</code>
+            
+
+            <code class="ruby">    @pending_posts = if current_user.role == &#39;moderator&#39;</code>
           </li>
         </div>
       
@@ -1526,7 +1526,7 @@
 
             
 
-            <code class="ruby">                       current_user.posts.UNPUBLISHED.order(id: :desc).includes(:user).page(params[:page]).per(4)</code>
+            <code class="ruby">                       Post.UNPUBLISHED.order(id: :desc).includes(:user).page(params[:page]).per(4)</code>
           </li>
         </div>
       
@@ -1537,18 +1537,18 @@
 
             
 
-            <code class="ruby">                     end</code>
+            <code class="ruby">                     else</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="76">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="76">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">  end</code>
+            
+
+            <code class="ruby">                       current_user.posts.UNPUBLISHED.order(id: :desc).includes(:user).page(params[:page]).per(4)</code>
           </li>
         </div>
       
@@ -1559,12 +1559,34 @@
 
             
 
+            <code class="ruby">                     end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="78">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="79">
+            
+            
+
+            
+
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="78">
+          <li class="covered" data-hits="1" data-linenumber="80">
             <span class="hits">1</span>
             
 
@@ -1575,7 +1597,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="79">
+          <li class="covered" data-hits="2" data-linenumber="81">
             <span class="hits">2</span>
             
 
@@ -1586,7 +1608,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="80">
+          <li class="covered" data-hits="2" data-linenumber="82">
             <span class="hits">2</span>
             
 
@@ -1597,35 +1619,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="81">
-            <span class="hits">2</span>
+          <li class="covered" data-hits="1" data-linenumber="83">
+            <span class="hits">1</span>
             
 
             
 
             <code class="ruby">                      I18n.t(:post_published)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="82">
-            
-            
-
-            
-
-            <code class="ruby">                    else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="83">
-            
-            
-
-            
-
-            <code class="ruby">                      @post.errors.full_messages.to_sentence</code>
           </li>
         </div>
       
@@ -1636,18 +1636,18 @@
 
             
 
-            <code class="ruby">                    end</code>
+            <code class="ruby">                    else</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="85">
-            <span class="hits">2</span>
+          <li class="covered" data-hits="1" data-linenumber="85">
+            <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    redirect_to pending_posts_path</code>
+            <code class="ruby">                      @post.errors.full_messages.to_sentence</code>
           </li>
         </div>
       
@@ -1658,40 +1658,40 @@
 
             
 
+            <code class="ruby">                    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="87">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    redirect_to pending_posts_path</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="88">
+            
+            
+
+            
+
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="87">
+          <li class="never" data-hits="" data-linenumber="89">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="88">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def remove</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="89">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    flash[:alert] = if @post.destroy</code>
           </li>
         </div>
       
@@ -1702,29 +1702,29 @@
 
             
 
+            <code class="ruby">  def remove</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="91">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    flash[:alert] = if @post.destroy</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="92">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">                      I18n.t(:post_destroy)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="91">
-            
-            
-
-            
-
-            <code class="ruby">                    else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="missed" data-hits="0" data-linenumber="92">
-            
-            
-
-            
-
-            <code class="ruby">                      @post.errors.full_messages.to_sentence</code>
           </li>
         </div>
       
@@ -1735,18 +1735,18 @@
 
             
 
-            <code class="ruby">                    end</code>
+            <code class="ruby">                    else</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="94">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="94">
+            
             
 
             
 
-            <code class="ruby">    redirect_to pending_posts_path</code>
+            <code class="ruby">                      @post.errors.full_messages.to_sentence</code>
           </li>
         </div>
       
@@ -1757,29 +1757,29 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">                    end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="96">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="97">
+          <li class="covered" data-hits="1" data-linenumber="96">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  private</code>
+            <code class="ruby">    redirect_to pending_posts_path</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="97">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -1795,7 +1795,29 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="99">
+          <li class="covered" data-hits="1" data-linenumber="99">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  private</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="100">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="101">
             
             
 
@@ -1806,7 +1828,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="100">
+          <li class="covered" data-hits="1" data-linenumber="102">
             <span class="hits">1</span>
             
 
@@ -1817,8 +1839,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="11" data-linenumber="101">
-            <span class="hits">11</span>
+          <li class="covered" data-hits="14" data-linenumber="103">
+            <span class="hits">14</span>
             
 
             
@@ -1828,8 +1850,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="11" data-linenumber="102">
-            <span class="hits">11</span>
+          <li class="covered" data-hits="14" data-linenumber="104">
+            <span class="hits">14</span>
             
 
             
@@ -1839,7 +1861,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="103">
+          <li class="never" data-hits="" data-linenumber="105">
             
             
 
@@ -1850,8 +1872,8 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="104">
-            
+          <li class="covered" data-hits="2" data-linenumber="106">
+            <span class="hits">2</span>
             
 
             
@@ -1861,35 +1883,13 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="105">
-            
+          <li class="covered" data-hits="2" data-linenumber="107">
+            <span class="hits">2</span>
             
 
             
 
             <code class="ruby">    redirect_to posts_path</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="106">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="107">
-            
-            
-
-            
-
-            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1900,12 +1900,34 @@
 
             
 
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="109">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="110">
+            
+            
+
+            
+
             <code class="ruby">  # Only allow a list of trusted parameters through.</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="109">
+          <li class="covered" data-hits="1" data-linenumber="111">
             <span class="hits">1</span>
             
 
@@ -1916,7 +1938,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="7" data-linenumber="110">
+          <li class="covered" data-hits="7" data-linenumber="112">
             <span class="hits">7</span>
             
 
@@ -1927,7 +1949,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="111">
+          <li class="never" data-hits="" data-linenumber="113">
             
             
 
@@ -1938,7 +1960,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="112">
+          <li class="never" data-hits="" data-linenumber="114">
             
             
 
@@ -11695,8 +11717,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="41" data-linenumber="3">
-            <span class="hits">41</span>
+          <li class="covered" data-hits="48" data-linenumber="3">
+            <span class="hits">48</span>
             
 
             
@@ -11706,8 +11728,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="41" data-linenumber="4">
-            <span class="hits">41</span>
+          <li class="covered" data-hits="47" data-linenumber="4">
+            <span class="hits">47</span>
             
 
             
@@ -11717,8 +11739,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="5">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="2" data-linenumber="5">
+            <span class="hits">2</span>
             
 
             
@@ -11728,8 +11750,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="41" data-linenumber="6">
-            <span class="hits">41</span>
+          <li class="covered" data-hits="48" data-linenumber="6">
+            <span class="hits">48</span>
             
 
             
@@ -11814,8 +11836,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="22" data-linenumber="3">
-            <span class="hits">22</span>
+          <li class="covered" data-hits="25" data-linenumber="3">
+            <span class="hits">25</span>
             
 
             
@@ -11825,8 +11847,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="22" data-linenumber="4">
-            <span class="hits">22</span>
+          <li class="covered" data-hits="25" data-linenumber="4">
+            <span class="hits">25</span>
             
 
             
@@ -11836,8 +11858,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="21" data-linenumber="5">
-            <span class="hits">21</span>
+          <li class="covered" data-hits="24" data-linenumber="5">
+            <span class="hits">24</span>
             
 
             
@@ -11847,8 +11869,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="22" data-linenumber="6">
-            <span class="hits">22</span>
+          <li class="covered" data-hits="25" data-linenumber="6">
+            <span class="hits">25</span>
             
 
             
@@ -12655,8 +12677,8 @@
     
 
     <div class="t-line-summary">
-      <b>94</b> relevant lines.
-      <span class="green"><b>94</b> lines covered</span> and
+      <b>107</b> relevant lines.
+      <span class="green"><b>107</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -12723,8 +12745,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="20" data-linenumber="6">
-            <span class="hits">20</span>
+          <li class="covered" data-hits="23" data-linenumber="6">
+            <span class="hits">23</span>
             
 
             
@@ -12734,8 +12756,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="20" data-linenumber="7">
-            <span class="hits">20</span>
+          <li class="covered" data-hits="23" data-linenumber="7">
+            <span class="hits">23</span>
             
 
             
@@ -12745,8 +12767,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="20" data-linenumber="8">
-            <span class="hits">20</span>
+          <li class="covered" data-hits="23" data-linenumber="8">
+            <span class="hits">23</span>
             
 
             
@@ -12756,8 +12778,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="20" data-linenumber="9">
-            <span class="hits">20</span>
+          <li class="covered" data-hits="23" data-linenumber="9">
+            <span class="hits">23</span>
             
 
             
@@ -13015,18 +13037,18 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="33">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="33">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    it &quot;GET Posts#show, should redirect since post with id 13 does not exist&quot; do</code>
           </li>
         </div>
       
@@ -13037,7 +13059,7 @@
 
             
 
-            <code class="ruby">  context &quot;Post new path&quot; do </code>
+            <code class="ruby">      @valid_post.id = 13</code>
           </li>
         </div>
       
@@ -13048,7 +13070,7 @@
 
             
 
-            <code class="ruby">    it &quot;GET Posts#new, should get the new post page&quot; do</code>
+            <code class="ruby">      get post_path(@valid_post.id)</code>
           </li>
         </div>
       
@@ -13059,18 +13081,18 @@
 
             
 
-            <code class="ruby">      get new_post_path</code>
+            <code class="ruby">      expect(response).to have_http_status(302)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="37">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="37">
+            
             
 
             
 
-            <code class="ruby">      expect(response).to have_http_status(200)</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -13081,7 +13103,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -13092,23 +13114,12 @@
 
             
 
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="40">
-            
-            
-
-            
-
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="41">
+          <li class="covered" data-hits="1" data-linenumber="40">
             <span class="hits">1</span>
             
 
@@ -13119,7 +13130,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="42">
+          <li class="covered" data-hits="1" data-linenumber="41">
             <span class="hits">1</span>
             
 
@@ -13130,7 +13141,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="43">
+          <li class="covered" data-hits="1" data-linenumber="42">
             <span class="hits">1</span>
             
 
@@ -13141,13 +13152,24 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="44">
+          <li class="covered" data-hits="1" data-linenumber="43">
             <span class="hits">1</span>
             
 
             
 
             <code class="ruby">      expect(response).to have_http_status(200)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="44">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -13158,29 +13180,29 @@
 
             
 
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="46">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="47">
-            
-            
-
-            
-
             <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="46">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &quot;GET Posts#edit, should redirect since post with id 13 does not exist&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="47">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      @valid_post.id = 13</code>
           </li>
         </div>
       
@@ -13191,7 +13213,7 @@
 
             
 
-            <code class="ruby">  describe &#39;POST /create&#39; do</code>
+            <code class="ruby">      get edit_post_path(@valid_post.id)</code>
           </li>
         </div>
       
@@ -13202,40 +13224,40 @@
 
             
 
-            <code class="ruby">    context &quot;Post create path with valid attributes&quot; do </code>
+            <code class="ruby">      expect(response).to have_http_status(302)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="50">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="50">
+            
             
 
             
 
-            <code class="ruby">      it &#39;creates a new Post&#39; do</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="51">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="51">
+            
             
 
             
 
-            <code class="ruby">        @valid_post = { id: @valid_post.id, title: @valid_post.title, description: @valid_post.description, user_id: @valid_post.user_id, status: @valid_post.status }</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="52">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="52">
+            
             
 
             
 
-            <code class="ruby">        expect do </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -13246,40 +13268,40 @@
 
             
 
-            <code class="ruby">        post posts_url, params: { post: @valid_post }</code>
+            <code class="ruby">  describe &#39;POST /create&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="54">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="54">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">        end.to change(Post, :count).by(1)</code>
+            
+
+            <code class="ruby">    context &quot;Post create path with valid attributes&quot; do </code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="55">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="55">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">      end</code>
+            
+
+            <code class="ruby">      it &#39;creates a new Post&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="56">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="56">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">        @valid_post = { id: @valid_post.id, title: @valid_post.title, description: @valid_post.description, user_id: @valid_post.user_id, status: @valid_post.status }</code>
           </li>
         </div>
       
@@ -13290,7 +13312,7 @@
 
             
 
-            <code class="ruby">      it &#39;redirects to the created post if post is valid&#39; do</code>
+            <code class="ruby">        post posts_url, params: { post: @valid_post }</code>
           </li>
         </div>
       
@@ -13301,12 +13323,56 @@
 
             
 
+            <code class="ruby">        expect(Post.last.title).to eq(@valid_post[:title])</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="59">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="60">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="61">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      it &#39;redirects to the created post if post is valid&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="62">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">        @valid_post = { id: @valid_post.id, title: @valid_post.title, description: @valid_post.description, user_id: @valid_post.user_id, status: @valid_post.status }</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="59">
+          <li class="covered" data-hits="1" data-linenumber="63">
             <span class="hits">1</span>
             
 
@@ -13317,7 +13383,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="60">
+          <li class="covered" data-hits="1" data-linenumber="64">
             <span class="hits">1</span>
             
 
@@ -13328,7 +13394,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="61">
+          <li class="never" data-hits="" data-linenumber="65">
             
             
 
@@ -13339,7 +13405,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="62">
+          <li class="never" data-hits="" data-linenumber="66">
             
             
 
@@ -13350,57 +13416,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="63">
+          <li class="never" data-hits="" data-linenumber="67">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="64">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    context &#39;Post create path with invalid parameters&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="65">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      it &#39;does not create a new Post&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="66">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        expect do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="67">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">          @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }</code>
           </li>
         </div>
       
@@ -13411,40 +13433,40 @@
 
             
 
-            <code class="ruby">          post posts_url, params: { post: @invalid_post }</code>
+            <code class="ruby">    context &#39;Post create path with invalid parameters&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="69">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="69">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">        end.to change(Post, :count).by(0)</code>
+            
+
+            <code class="ruby">      it &#39;does not create a new Post&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="70">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="70">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">      end</code>
+            
+
+            <code class="ruby">        expect do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="71">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="71">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">          @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }</code>
           </li>
         </div>
       
@@ -13455,12 +13477,56 @@
 
             
 
+            <code class="ruby">          post posts_url, params: { post: @invalid_post }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="73">
+            
+            
+
+            
+
+            <code class="ruby">        end.to change(Post, :count).by(0)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="74">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="75">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="76">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      it &quot;renders an unprocessable entity code&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="73">
+          <li class="covered" data-hits="1" data-linenumber="77">
             <span class="hits">1</span>
             
 
@@ -13471,7 +13537,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="74">
+          <li class="covered" data-hits="1" data-linenumber="78">
             <span class="hits">1</span>
             
 
@@ -13482,7 +13548,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="75">
+          <li class="covered" data-hits="1" data-linenumber="79">
             <span class="hits">1</span>
             
 
@@ -13493,7 +13559,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="76">
+          <li class="never" data-hits="" data-linenumber="80">
             
             
 
@@ -13504,7 +13570,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="77">
+          <li class="never" data-hits="" data-linenumber="81">
             
             
 
@@ -13515,7 +13581,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="78">
+          <li class="never" data-hits="" data-linenumber="82">
             
             
 
@@ -13526,57 +13592,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="79">
+          <li class="never" data-hits="" data-linenumber="83">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="80">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;PATCH /update&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="81">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    context &#39;with valid parameters&#39; do    </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="82">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      it &#39;updates the requested post successfully&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="83">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        @new_attributes = { id: @valid_post.id, title: @valid_post.title, description: &quot;This is the new description to be updated&quot;, user_id: @invalid_post.user_id, status: @valid_post.status }</code>
           </li>
         </div>
       
@@ -13587,7 +13609,7 @@
 
             
 
-            <code class="ruby">        patch post_url(@valid_post), params: { post: @new_attributes }</code>
+            <code class="ruby">  describe &#39;PATCH /update&#39; do</code>
           </li>
         </div>
       
@@ -13598,29 +13620,29 @@
 
             
 
-            <code class="ruby">        expect(response).to have_http_status(302)</code>
+            <code class="ruby">    context &#39;with valid parameters&#39; do    </code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="86">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="86">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">      end</code>
+            
+
+            <code class="ruby">      it &#39;updates the requested post successfully&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="87">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="87">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">        @new_attributes = { id: @valid_post.id, title: @valid_post.title, description: &quot;This is the new description to be updated&quot;, user_id: @invalid_post.user_id, status: @valid_post.status }</code>
           </li>
         </div>
       
@@ -13631,7 +13653,7 @@
 
             
 
-            <code class="ruby">      it &quot;redirects upon successfull updation &quot; do</code>
+            <code class="ruby">        patch post_url(@valid_post), params: { post: @new_attributes }</code>
           </li>
         </div>
       
@@ -13642,12 +13664,56 @@
 
             
 
+            <code class="ruby">        expect(response).to have_http_status(302)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="90">
+            
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="91">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="92">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      it &quot;redirects upon successfull updation &quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="93">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">        @valid_post = { id: @valid_post.id, title: @valid_post.title, description: @valid_post.description, user_id: @valid_post.user_id, status: @valid_post.status }</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="90">
+          <li class="covered" data-hits="1" data-linenumber="94">
             <span class="hits">1</span>
             
 
@@ -13658,7 +13724,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="91">
+          <li class="covered" data-hits="1" data-linenumber="95">
             <span class="hits">1</span>
             
 
@@ -13669,7 +13735,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="92">
+          <li class="never" data-hits="" data-linenumber="96">
             
             
 
@@ -13680,7 +13746,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="93">
+          <li class="never" data-hits="" data-linenumber="97">
             
             
 
@@ -13691,57 +13757,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="94">
+          <li class="never" data-hits="" data-linenumber="98">
             
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="95">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    context &#39;with invalid parameters&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="96">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      it &quot;redirects upon unsuccessful updation &quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="97">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="98">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        patch post_url(@valid_post), params: { post: @invalid_post }</code>
           </li>
         </div>
       
@@ -13752,12 +13774,56 @@
 
             
 
+            <code class="ruby">    context &#39;with invalid parameters&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="100">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      it &quot;redirects upon unsuccessful updation &quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="101">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="102">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        patch post_url(@valid_post), params: { post: @invalid_post }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="103">
+            <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">        expect(response).to have_http_status(422)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="100">
+          <li class="never" data-hits="" data-linenumber="104">
             
             
 
@@ -13768,7 +13834,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="101">
+          <li class="never" data-hits="" data-linenumber="105">
             
             
 
@@ -13779,7 +13845,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="102">
+          <li class="never" data-hits="" data-linenumber="106">
             
             
 
@@ -13790,7 +13856,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="103">
+          <li class="never" data-hits="" data-linenumber="107">
             
             
 
@@ -13801,150 +13867,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="104">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;DELETE /destroy&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="105">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;destroys the requested post&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="106">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="107">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        delete post_url(@valid_post)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="108">
-            
-            
-
-            
-
-            <code class="ruby">      end.to change(Post, :count).by(-1)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="109">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="110">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="111">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;redirects to the posts list&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="112">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      delete post_url(@valid_post)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="113">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(response).to redirect_to(posts_url)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="114">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="115">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="116">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="117">
+          <li class="covered" data-hits="1" data-linenumber="108">
             <span class="hits">1</span>
             
 
@@ -13955,7 +13878,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="118">
+          <li class="covered" data-hits="1" data-linenumber="109">
             <span class="hits">1</span>
             
 
@@ -13966,7 +13889,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="119">
+          <li class="covered" data-hits="1" data-linenumber="110">
             <span class="hits">1</span>
             
 
@@ -13977,7 +13900,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="120">
+          <li class="covered" data-hits="1" data-linenumber="111">
             <span class="hits">1</span>
             
 
@@ -13988,7 +13911,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="121">
+          <li class="never" data-hits="" data-linenumber="112">
             
             
 
@@ -13999,7 +13922,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="122">
+          <li class="never" data-hits="" data-linenumber="113">
             
             
 
@@ -14010,7 +13933,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="123">
+          <li class="covered" data-hits="1" data-linenumber="114">
             <span class="hits">1</span>
             
 
@@ -14021,7 +13944,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="124">
+          <li class="covered" data-hits="1" data-linenumber="115">
             <span class="hits">1</span>
             
 
@@ -14032,7 +13955,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="125">
+          <li class="covered" data-hits="1" data-linenumber="116">
             <span class="hits">1</span>
             
 
@@ -14043,7 +13966,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="126">
+          <li class="covered" data-hits="1" data-linenumber="117">
             <span class="hits">1</span>
             
 
@@ -14054,7 +13977,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="127">
+          <li class="covered" data-hits="1" data-linenumber="118">
             <span class="hits">1</span>
             
 
@@ -14065,7 +13988,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="128">
+          <li class="never" data-hits="" data-linenumber="119">
             
             
 
@@ -14076,7 +13999,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="129">
+          <li class="never" data-hits="" data-linenumber="120">
             
             
 
@@ -14087,7 +14010,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="130">
+          <li class="never" data-hits="" data-linenumber="121">
             
             
 
@@ -14098,7 +14021,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="131">
+          <li class="covered" data-hits="1" data-linenumber="122">
             <span class="hits">1</span>
             
 
@@ -14109,7 +14032,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="132">
+          <li class="covered" data-hits="1" data-linenumber="123">
             <span class="hits">1</span>
             
 
@@ -14120,7 +14043,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="133">
+          <li class="covered" data-hits="1" data-linenumber="124">
             <span class="hits">1</span>
             
 
@@ -14131,7 +14054,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="134">
+          <li class="covered" data-hits="1" data-linenumber="125">
             <span class="hits">1</span>
             
 
@@ -14142,7 +14065,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="135">
+          <li class="never" data-hits="" data-linenumber="126">
             
             
 
@@ -14153,18 +14076,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="136">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="137">
+          <li class="never" data-hits="" data-linenumber="127">
             
             
 
@@ -14175,7 +14087,84 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="138">
+          <li class="covered" data-hits="1" data-linenumber="128">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;redirects to post page since id is not valid&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="129">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      @invalid_post = { id: @valid_post.id, title: @valid_post.title, description: :short, user_id: @valid_post.user_id, status: @valid_post.status }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="130">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      patch set_status_post_path(@invalid_post[:id], status: &#39;reported&#39;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="131">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(response).to redirect_to(post_path(@valid_post.id))</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="132">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="133">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="134">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="135">
             <span class="hits">1</span>
             
 
@@ -14186,7 +14175,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="139">
+          <li class="covered" data-hits="1" data-linenumber="136">
             <span class="hits">1</span>
             
 
@@ -14197,7 +14186,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="140">
+          <li class="covered" data-hits="1" data-linenumber="137">
             <span class="hits">1</span>
             
 
@@ -14208,7 +14197,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="141">
+          <li class="covered" data-hits="1" data-linenumber="138">
             <span class="hits">1</span>
             
 
@@ -14219,7 +14208,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="142">
+          <li class="never" data-hits="" data-linenumber="139">
             
             
 
@@ -14230,7 +14219,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="143">
+          <li class="never" data-hits="" data-linenumber="140">
             
             
 
@@ -14241,7 +14230,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="144">
+          <li class="covered" data-hits="1" data-linenumber="141">
             <span class="hits">1</span>
             
 
@@ -14252,35 +14241,68 @@
         </div>
       
         <div>
+          <li class="covered" data-hits="1" data-linenumber="142">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      @valid_post = FactoryBot.build(:post, description: :short)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="143">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      @valid_post.save(validate: false)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="144">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      patch publish_post_path(@valid_post[:id])</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="covered" data-hits="1" data-linenumber="145">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="146">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      patch publish_post_path(@invalid_post)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="147">
-            <span class="hits">1</span>
-            
-
-            
-
             <code class="ruby">      expect(response).to redirect_to(pending_posts_path)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="146">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="147">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -14291,29 +14313,29 @@
 
             
 
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="149">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="150">
-            
-            
-
-            
-
             <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="149">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  context &quot;Post new path&quot; do </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="150">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &quot;GET Posts#new, should get the new post page&quot; do</code>
           </li>
         </div>
       
@@ -14324,7 +14346,7 @@
 
             
 
-            <code class="ruby">  describe &#39;PATCH /destroy&#39; do</code>
+            <code class="ruby">      get new_post_path</code>
           </li>
         </div>
       
@@ -14335,34 +14357,12 @@
 
             
 
-            <code class="ruby">    it &#39;redirects to pending posts page if removed&#39; do</code>
+            <code class="ruby">      expect(response).to have_http_status(200)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="153">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      delete remove_post_path(@valid_post)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="154">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(response).to redirect_to(pending_posts_path)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="155">
+          <li class="never" data-hits="" data-linenumber="153">
             
             
 
@@ -14373,7 +14373,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="156">
+          <li class="never" data-hits="" data-linenumber="154">
             
             
 
@@ -14384,7 +14384,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="157">
+          <li class="never" data-hits="" data-linenumber="155">
             
             
 
@@ -14395,7 +14395,227 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="158">
+          <li class="covered" data-hits="1" data-linenumber="156">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  context &quot;Post /remove path&quot; do </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="157">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;redirects to pending posts page if removed&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="158">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      delete remove_post_path(@valid_post)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="159">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(response).to redirect_to(pending_posts_path)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="160">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="161">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="162">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="163">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  describe &#39;DELETE /destroy&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="164">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;destroys the requested post&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="165">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="166">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        delete post_url(@valid_post)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="167">
+            
+            
+
+            
+
+            <code class="ruby">      end.to change(Post, :count).by(-1)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="168">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="169">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="170">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;redirects to the posts list&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="171">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      delete post_url(@valid_post)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="172">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(response).to redirect_to(posts_url)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="173">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="174">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="175">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="176">
             
             
 
