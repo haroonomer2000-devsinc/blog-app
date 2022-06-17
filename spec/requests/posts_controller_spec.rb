@@ -9,15 +9,13 @@ RSpec.describe "Posts Controller", type: :request do
     sign_in(@user)
   end
 
-  context "Post index path (logged out user)" do 
+  context "Post index path" do 
     it "GET Posts#index (logged out user), should be redirected to login page" do 
       sign_out(@user)
       get posts_path
       expect(response).to have_http_status(302)
     end
-  end
 
-  context "Post index path (logged in user)" do 
     it "GET Posts#index, should get the posts index page" do
       get posts_path
       expect(response).to have_http_status(200)
