@@ -1,52 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe "Comments Controller", type: :request do
-  fixtures :all
   
   before(:each) do 
-      user = users(:moderator)
-      user.confirm
-      sign_in user
-      @post_id = 134
-  end
-
-  let(:valid_post) do
-    {
-      'id' => '4',
-      'title' => "Test Post 4",
-      'description' => "This is the description of post number 4", 
-      'user_id'=> 707834473, 
-      'status' => 0 
-    }
-  end
-
-  let(:invalid_post) do
-    {
-      'description' => "This is the description of post number 4", 
-      'user_id'=> 707834473, 
-      'status' => 0 
-    }
-  end
-  let (:valid_comment) do 
-    {
-        'body' => "This is test comment body",
-        'user_id' => 175178709,
-        'post_id' => 134,
-        'parent_id' => nil
-    }
+    @user = FactoryBot.create(:user)
+    @second_user = FactoryBot.create(:user)
+    @valid_post = FactoryBot.create(:post, user_id: @user.id)
+    @valid_comment = FactoryBot.create(:comment, user_id: @user.id, post_id: @valid_post.id, parent_id: nil)
+    sign_in(@user)
   end
   
   describe 'Comments /create' do
     context "Comments create path" do 
-      it 'creates a new comment with invalid attrs' do
-        sign_out :user
-        user = users(:regular)
-        user.confirm
-        sign_in user
-        post = Post.find(@post_id)
+      it 'creates a new comment with valid attrs' do
+        @new_body = "This is a new body"
+        post post_comments_url(@valid_post.id), params: { "post" => {body: @new_body, parent_id: nil} , post: @valid_post.attributes }
+        expect(Comment.last.body).to eq(@new_body)
+      end
+
+      it 'does not create a new comment with invalid attrs' do
         expect do 
-          @comment = Comment.new(valid_comment)
-          post post_comments_url(post.id), params: {body: "asasd", post: post.attributes }
+          post post_comments_url(@valid_post.id), params: { "post" => {body: nil, parent_id: nil} , post: @valid_post.attributes }
         end.to change(Comment, :count).by(0)
       end
     end
@@ -55,10 +29,18 @@ RSpec.describe "Comments Controller", type: :request do
   describe 'Comments /update' do
     context "Comments update path with valid attributes" do 
       it 'updates a comment' do
-        post = Post.find(@post_id)
-        comment = Comment.new(valid_comment)
-        comment.save
-        patch post_comment_url(post.id,comment), params: {comment: valid_comment, post: post.attributes}
+        sign_in(@second_user)
+        @valid_comment_hash = { id: @valid_comment.id, body: @valid_comment.body, post_id: @valid_post.id, user_id: @user.id, parent_id: nil}
+        patch post_comment_url(@valid_post.id,@valid_comment.id), params: {post: @valid_post.attributes}
+        expect(response).to redirect_to(post_path(@valid_post.id))
+      end
+    end
+    context "Comments update path with invalid attributes" do 
+      it 'updates a comment with invalid attributes' do
+        sign_in(@second_user)
+        @valid_comment_hash = { id: @valid_comment.id, body: @valid_comment.body, post_id: @valid_post.id, user_id: @user.id, parent_id: nil}
+        patch post_comment_url(@valid_post.id, 123), params: {post: @valid_post.attributes}
+        expect(response).to redirect_to(posts_path)
       end
     end
   end
@@ -66,32 +48,11 @@ RSpec.describe "Comments Controller", type: :request do
   describe 'Comments /delete' do
     context "Comments delete path" do 
       it 'deletes a valid comment' do
-        sign_out :user
-        user = users(:regular)
-        user.confirm
-        sign_in user
-        post = Post.find(@post_id)
-        comment = Comment.new(valid_comment)
-        comment.save
         expect do
-            delete post_comment_url(post.id,comment), params: {comment: valid_comment, post: post.attributes }
+            delete post_comment_url(@valid_post.id,@valid_comment), params: {comment: @valid_comment, post: @valid_post.attributes }
         end.to change(Comment, :count).by(-1)
-      end
-
-      it 'deletes a comment with invalid id resource not found' do
-        sign_out :user
-        user = users(:regular)
-        user.confirm
-        sign_in user
-        post = Post.find(@post_id)
-        comment = Comment.new(valid_comment)
-        comment.save
-        comment.id = 123123 #invalid id
-        delete post_comment_url(post.id,comment), params: {comment: comment, post: post.attributes }
-        expect(response).to have_http_status(302)
       end
     end
   end
-
 
 end

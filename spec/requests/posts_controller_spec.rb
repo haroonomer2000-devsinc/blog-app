@@ -1,55 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe "Posts Controller", type: :request do
-  fixtures :all
  
   before(:each) do 
-    user = users(:moderator)
-    user.confirm
-    sign_in user
+    @user = FactoryBot.create(:user)
+    @valid_post = FactoryBot.create(:post, user_id: @user.id)
+    @invalid_post = FactoryBot.create(:post, user_id: @user.id)
+    sign_in(@user)
   end
 
-  let(:valid_post) do
-    {
-      'id' => '4',
-      'title' => "Test Post 4",
-      'description' => "This is the description of post number 4", 
-      'user_id'=> 707834473, 
-      'status' => 0 
-    }
-  end
-  let(:valid_post2) do
-    {
-      'description' => "This is the description of post number 4", 
-      'user_id'=> 707834473, 
-      'status' => 0 
-    }
-  end
-  let(:invalid_post) do
-    {
-      'description' => "This is the description of post number 4", 
-      'user_id'=> 707834473, 
-      'status' => 0 
-    }
-  end
-  let(:invalid_post2) do
-    {
-      'id' => '4',
-      'description' => "This is description",
-      'user_id'=> 707834473, 
-      'status' => 0 
-    }
-  end
-
-  context "Post index path (logged out user)" do 
+  context "Post index path" do 
     it "GET Posts#index (logged out user), should be redirected to login page" do 
-      sign_out :user
+      sign_out(@user)
       get posts_path
       expect(response).to have_http_status(302)
     end
-  end
 
-  context "Post index path (logged in user)" do 
     it "GET Posts#index, should get the posts index page" do
       get posts_path
       expect(response).to have_http_status(200)
@@ -58,23 +24,26 @@ RSpec.describe "Posts Controller", type: :request do
 
   context "Post show path" do 
     it "GET Posts#show, should get the post by id" do
-      post_id = 134
-      get post_path(post_id)
+      get post_path(@valid_post.id)
       expect(response).to have_http_status(200)
     end
-  end
 
-  context "Post new path" do 
-    it "GET Posts#new, should get the new post page" do
-      get new_post_path
-      expect(response).to have_http_status(200)
+    it "GET Posts#show, should redirect since post with id 13 does not exist" do
+      @valid_post.id = 13
+      get post_path(@valid_post.id)
+      expect(response).to have_http_status(302)
     end
   end
 
   context "Post edit path" do 
     it "GET Posts#edit, should get the edit post page" do
-      post_id = 134
-      get edit_post_path(post_id)
+      get edit_post_path(@valid_post.id)
+      expect(response).to have_http_status(200)
+    end
+
+    it "GET Posts#edit, should redirect since post with id 13 does not exist" do
+      @valid_post.id = 13
+      get edit_post_path(@valid_post.id)
       expect(response).to have_http_status(302)
     end
   end
@@ -82,13 +51,14 @@ RSpec.describe "Posts Controller", type: :request do
   describe 'POST /create' do
     context "Post create path with valid attributes" do 
       it 'creates a new Post' do
-        expect do post = Post.new(valid_post)
-        post posts_url, params: { post: valid_post }
-        end.to change(Post, :count).by(1)
+        @valid_post = { id: @valid_post.id, title: @valid_post.title, description: @valid_post.description, user_id: @valid_post.user_id, status: @valid_post.status }
+        post posts_url, params: { post: @valid_post }
+        expect(Post.last.title).to eq(@valid_post[:title])
       end
 
       it 'redirects to the created post if post is valid' do
-        post posts_url, params: { post: valid_post }
+        @valid_post = { id: @valid_post.id, title: @valid_post.title, description: @valid_post.description, user_id: @valid_post.user_id, status: @valid_post.status }
+        post posts_url, params: { post: @valid_post }
         expect(response).to have_http_status(302)
       end
     end
@@ -96,67 +66,40 @@ RSpec.describe "Posts Controller", type: :request do
     context 'Post create path with invalid parameters' do
       it 'does not create a new Post' do
         expect do
-          post posts_url, params: { post: invalid_post }
+          @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }
+          post posts_url, params: { post: @invalid_post }
         end.to change(Post, :count).by(0)
       end
 
       it "renders an unprocessable entity code" do
-        post posts_url, params: { post: invalid_post }
+        @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }
+        post posts_url, params: { post: @invalid_post }
         expect(response).to have_http_status(422)
       end
     end
   end   
 
   describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        {
-          'id' => '4',
-          'title' => "Test Post 4 Updated",
-          'description' => "This is the description of post number 4", 'user_id'=> 707834473, 
-          'status' => 0 
-        }
-      end
-
+    context 'with valid parameters' do    
       it 'updates the requested post successfully' do
-        post = Post.new(valid_post)
-        patch post_url(post), params: { post: new_attributes }
+        @new_attributes = { id: @valid_post.id, title: @valid_post.title, description: "This is the new description to be updated", user_id: @invalid_post.user_id, status: @valid_post.status }
+        patch post_url(@valid_post), params: { post: @new_attributes }
         expect(response).to have_http_status(302)
       end
 
-    end
-
-    context 'with invalid parameters' do
       it "redirects upon successfull updation " do
-        post = Post.create! valid_post
-        patch post_url(post), params: { post: valid_post }
+        @valid_post = { id: @valid_post.id, title: @valid_post.title, description: @valid_post.description, user_id: @valid_post.user_id, status: @valid_post.status }
+        patch post_url(@valid_post), params: { post: @valid_post }
         expect(response).to have_http_status(302)
       end
     end
 
     context 'with invalid parameters' do
       it "redirects upon unsuccessful updation " do
-        post = Post.create! valid_post
-        patch post_url(post), params: { post: invalid_post2 }
+        @invalid_post = { id: @invalid_post.id, title: @invalid_post.title, description: :short, user_id: @invalid_post.user_id, status: @invalid_post.status }
+        patch post_url(@valid_post), params: { post: @invalid_post }
         expect(response).to have_http_status(422)
       end
-    end
-  end
-
-  describe 'DELETE /destroy' do
-    it 'destroys the requested post' do
-      post = Post.new(valid_post)
-      post.save
-      expect do
-        delete post_url(post)
-      end.to change(Post, :count).by(-1)
-    end
-
-    it 'redirects to the posts list' do
-      post = Post.new(valid_post)
-      post.save
-      delete post_url(post)
-      expect(response).to redirect_to(posts_url)
     end
   end
 
@@ -167,9 +110,8 @@ RSpec.describe "Posts Controller", type: :request do
     end
 
     it 'redirects to pending posts page for normal user' do
-      user = users(:regular)
-      user.confirm
-      sign_in user
+      @user = FactoryBot.create(:user, role: nil)
+      sign_in(@user)
       get pending_posts_url
       expect(response).to have_http_status(200)
     end
@@ -177,37 +119,55 @@ RSpec.describe "Posts Controller", type: :request do
 
   describe 'PATCH /set_status' do
     it 'redirects to post page' do
-      post = Post.new(valid_post)
-      post.save
-      patch set_status_post_path(post, status: 'reported')
-      expect(response).to redirect_to(post_path(post))
+      patch set_status_post_path(@valid_post, status: 'reported')
+      expect(response).to redirect_to(post_path(@valid_post))
+    end
+
+    it 'redirects to post page since id is not valid' do
+      @invalid_post = { id: @valid_post.id, title: @valid_post.title, description: :short, user_id: @valid_post.user_id, status: @valid_post.status }
+      patch set_status_post_path(@invalid_post[:id], status: 'reported')
+      expect(response).to redirect_to(post_path(@valid_post.id))
     end
   end
 
   describe 'PATCH /publish' do
     it 'redirects to pending posts page if published' do
-      post = Post.new(valid_post)
-      post.save
-      patch publish_post_path(post)
+      patch publish_post_path(@valid_post)
       expect(response).to redirect_to(pending_posts_path)
     end
 
     it 'redirects to pending posts page after unsuccessful updation' do
-      post = Post.new(valid_post)
-      post.save
-      post.description = "abc" # too short invalid
-      post.save(validate: false)
-      patch publish_post_path(post)
+      @valid_post = FactoryBot.build(:post, description: :short)
+      @valid_post.save(validate: false)
+      patch publish_post_path(@valid_post[:id])
       expect(response).to redirect_to(pending_posts_path)
     end
   end
 
-  describe 'PATCH /destroy' do
+  context "Post new path" do 
+    it "GET Posts#new, should get the new post page" do
+      get new_post_path
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  context "Post /remove path" do 
     it 'redirects to pending posts page if removed' do
-      post = Post.new(valid_post)
-      post.save
-      delete remove_post_path(post)
+      delete remove_post_path(@valid_post)
       expect(response).to redirect_to(pending_posts_path)
+    end
+  end
+
+  describe 'DELETE /destroy' do
+    it 'destroys the requested post' do
+      expect do
+        delete post_url(@valid_post)
+      end.to change(Post, :count).by(-1)
+    end
+
+    it 'redirects to the posts list' do
+      delete post_url(@valid_post)
+      expect(response).to redirect_to(posts_url)
     end
   end
 
