@@ -1,7 +1,7 @@
 import React from 'react'
 import Comment from './Comment'
 
-const Comments = ({comments}) => {
+const Comments = ({comments, users}) => {
   return (
     <div>
         <h3>Comments</h3><hr/><br/>
@@ -9,7 +9,7 @@ const Comments = ({comments}) => {
             comments.map((comment) => {
                 if (!comment.parent_id) {
                     return (
-                        <Comment key = {comment.id} comment = {comment} comments = {comments} />
+                        <Comment key = {comment.id} comment = {comment} comments = {comments} users = {users}/>
                     )
                 }
             })

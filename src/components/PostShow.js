@@ -6,6 +6,7 @@ import Suggestions from './Suggestions';
 const PostShow = () => {
   
   const [postData, setPostData] = useState(null);
+  const [users, setUsers] = useState(null);
 
   useEffect(()=>{
     fetch('http://127.0.0.1:3000/posts/31.json',{
@@ -13,6 +14,11 @@ const PostShow = () => {
     }).then( response => response.json()).then(status => {
        console.log(status);
        setPostData(status);
+       let temp_users = {};
+       status['users'].map((user)=>{
+            temp_users[user.id] = user.email;
+       })
+       setUsers(temp_users);
     });
   },[])
     
@@ -33,8 +39,8 @@ const PostShow = () => {
                                     <p className='card-text'><small className='text-muted'>Last Updated {moment(postData.post.updated_at).fromNow()} </small></p> 
 
                                     {
-                                        ((postData.current_user.id == postData.post_user.id) && (postData.post.status === "PUBLISHED")) ?
-                                            <Suggestions postData = {postData} />
+                                        ((postData.current_user.id === postData.post_user.id) && (postData.post.status === "PUBLISHED")) ?
+                                            <Suggestions postData = {postData} users = {users} />
                                         : 
                                             false
                                     }
@@ -85,7 +91,7 @@ const PostShow = () => {
         </div>
         {
             (postData !== null) ?
-                <Comments comments = {postData.comments} />
+                <Comments comments = {postData.comments} users = {users} />
             :
                 false
         }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Suggestions = ({postData}) => {
+const Suggestions = ({postData, users}) => {
   return (
     <div>
         {
@@ -19,8 +19,8 @@ const Suggestions = ({postData}) => {
                             {
                                 postData.post_suggestions.map((suggestion) => {
                                     return (
-                                        <tr key={suggestion.suggestion_id}>
-                                            <td>{suggestion.email}</td>
+                                        <tr key={suggestion.id}>
+                                            <td>{users[suggestion.user_id]}</td>
                                             <td>{suggestion.to_replace}</td>
                                             <td>{suggestion.replacement}</td>
                                             {/* <td><%= link_to 'Approve', apply_post_suggestion_path(@post, suggestion.id), method: :patch, data: { confirm: 'Are you sure?' }, className:'btn btn-success'%> <%= link_to 'Deny', post_suggestion_path(@post,suggestion.id),  method: :delete, data: { confirm: 'Are you sure?' }, className:'btn btn-danger'%></td> */}
