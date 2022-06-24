@@ -7,6 +7,7 @@ const PostShow = () => {
   
   const [postData, setPostData] = useState(null);
   const [users, setUsers] = useState(null);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(()=>{
     fetch('http://127.0.0.1:3000/posts/31.json',{
@@ -28,7 +29,6 @@ const PostShow = () => {
             <div className='row g-0'>
                 <div className='col-md-12'>
                     <div className='card-body'>      
-                        
                         {
                             (postData !== null) ? (
                                 <div>
@@ -37,9 +37,9 @@ const PostShow = () => {
                                     <p className='card-text'>{postData.post.description}</p>
                                     <p className='card-text'><small className='text-muted'>Posted {moment(postData.post.published_at).fromNow()} </small></p>
                                     <p className='card-text'><small className='text-muted'>Last Updated {moment(postData.post.updated_at).fromNow()} </small></p> 
-
+                                    <button onClick={() => setShowSuggestions(!showSuggestions)} type="button" className="btn btn-link">Show Suggestions</button><br/><br/>
                                     {
-                                        ((postData.current_user.id === postData.post_user.id) && (postData.post.status === "PUBLISHED")) ?
+                                        ((postData.current_user.id === postData.post_user.id) && (postData.post.status === "PUBLISHED") && (showSuggestions)) ?
                                             <Suggestions postData = {postData} users = {users} />
                                         : 
                                             false
