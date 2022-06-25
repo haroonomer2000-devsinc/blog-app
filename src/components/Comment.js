@@ -1,7 +1,10 @@
 import moment from 'moment';
-import React from 'react'
+import React, { useState } from 'react'
+import AddComment from './AddComment';
 
 const Comment = ({comment, comments, users}) => {
+
+  const [reply, setReply] = useState(false);
   return (
     <div>
         <ul className='list-group'>
@@ -18,6 +21,13 @@ const Comment = ({comment, comments, users}) => {
                 <p className='card-text'>
                     <small className='text-muted'>Posted {moment(comment.created_at).fromNow()} ago </small>
                 </p>
+                <button onClick={() => setReply(!reply)} className='btn btn-link'>Reply</button><br/><br/>
+                {
+                    (reply) ?
+                        <AddComment parent_id={comment.id} post_id={comment.post_id} />
+                    :
+                        false
+                }
 
                 {/* <!-- Current user can delete their comment else if not theirs, report it -->
                 <% if current_user.id == comment.user.id %>  
@@ -26,12 +36,6 @@ const Comment = ({comment, comments, users}) => {
                     <%= link_to 'Report', post_comment_path(comment.post_id,comment.id, status: 'reported'), method: :patch, data: { confirm: 'Are you sure?' } %>
                 <% end %><br/><br/> */}
             {/* 
-                <!-- Reply comment -->
-                <a className='comment-form-display' href='#'>Reply</a>
-                <div className='comment-form'>
-                    <%= render 'comments/form', locals: {post: @post, parent: @parent = comment} %>
-                </div>
-
                 <%= render partial: 'likes/button', locals: { likeable: comment, like: current_user.likes.find_by(likeable: comment) } %>
 
                 <div className='sub-comment'>

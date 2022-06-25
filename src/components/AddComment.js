@@ -28,14 +28,13 @@ const AddComment = ({parent_id, post_id}) => {
 
   return (
     <div>
-        <h3>Add comment</h3><hr/><br/>
         <form onSubmit={addComment}>
             <div className="mb-3">
                 <input onChange={(e) => {setComment(e.target.value)}} required type="text" className="form-control"  placeholder='Add a comment' />
             </div>
             <button className='btn btn-primary'>Post</button>
         </form>
-    </div>
+    <br/><br/></div>
   )
 }
 

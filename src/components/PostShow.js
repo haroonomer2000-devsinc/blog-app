@@ -114,13 +114,14 @@ const PostShow = () => {
             (postData !== null) ?
             <div>
                 <Comments comments = {postData.comments} users = {users} />
+                <h3>Add comment</h3><hr/><br/>
                 <AddComment parent={null} post_id={postData.post.id} />
             </div>
             :
                 false
         }
-       
-    </div>
+    <button className='btn btn-primary'>Back</button>
+    <br/><br/></div>
   )
 }
 
