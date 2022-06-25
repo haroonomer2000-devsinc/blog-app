@@ -113,7 +113,7 @@ const PostShow = () => {
         {
             (postData !== null) ?
             <div>
-                <Comments comments = {postData.comments} users = {users} />
+                <Comments comments = {postData.comments} users = {users} current_user = {postData.current_user} />
                 <h3>Add comment</h3><hr/><br/>
                 <AddComment parent={null} post_id={postData.post.id} />
             </div>

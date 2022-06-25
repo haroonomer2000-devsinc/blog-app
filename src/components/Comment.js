@@ -2,9 +2,29 @@ import moment from 'moment';
 import React, { useState } from 'react'
 import AddComment from './AddComment';
 
-const Comment = ({comment, comments, users}) => {
+const Comment = ({comment, comments, users, current_user}) => {
 
   const [reply, setReply] = useState(false);
+
+  const removeComment = (post_id, id) => {
+    let post = {
+        post_id,
+        id
+    }
+    let params = {
+        post
+    }
+    fetch(`http://127.0.0.1:3000/posts/${post_id}/comments/${id}`,{
+        method: "DELETE",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(params)
+        }).then((response) => response.json()).then(status => {
+            window.location.reload();
+    })
+  }
+
   return (
     <div>
         <ul className='list-group'>
@@ -14,25 +34,29 @@ const Comment = ({comment, comments, users}) => {
                         <strong>{users[comment.user_id]}: </strong>
                     :
                         false
-                   
                 }
                 {comment.body}
                 <span>
                 <p className='card-text'>
                     <small className='text-muted'>Posted {moment(comment.created_at).fromNow()} ago </small>
                 </p>
-                <button onClick={() => setReply(!reply)} className='btn btn-link'>Reply</button><br/><br/>
+                {
+                    (current_user !== undefined) ?
+                        (current_user.id === comment.user_id) ?
+                            <button onClick={()=>removeComment(comment.post_id, comment.id)} className='btn btn-link'>Delete</button>
+                        :
+                            false
+                    :
+                        false
+                }
+                <br/><button onClick={() => setReply(!reply)} className='btn btn-link'>Reply</button><br/><br/>
                 {
                     (reply) ?
                         <AddComment parent_id={comment.id} post_id={comment.post_id} />
                     :
                         false
                 }
-
-                {/* <!-- Current user can delete their comment else if not theirs, report it -->
-                <% if current_user.id == comment.user.id %>  
-                    <%= link_to 'Delete', post_comment_path(comment.post_id,comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-                <% else %>
+                {/* 
                     <%= link_to 'Report', post_comment_path(comment.post_id,comment.id, status: 'reported'), method: :patch, data: { confirm: 'Are you sure?' } %>
                 <% end %><br/><br/> */}
             {/* 
@@ -46,7 +70,7 @@ const Comment = ({comment, comments, users}) => {
                     (comments.map((c) => {
                         if (c.parent_id === comment.id){
                             return (
-                                <Comment key = {c.id} comment={c} comments = {comments} users = {users}/>
+                                <Comment key = {c.id} comment={c} comments = {comments} users = {users} current_user={current_user}/>
                             )
                         }
                     }))
