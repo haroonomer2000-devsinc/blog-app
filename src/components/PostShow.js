@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, {useEffect, useState} from 'react'
+import AddSuggestion from './AddSuggestion';
 import Comments from './Comments';
 import Suggestions from './Suggestions';
 
@@ -8,9 +9,10 @@ const PostShow = () => {
   const [postData, setPostData] = useState(null);
   const [users, setUsers] = useState(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [addSuggestion, setAddSuggestion] = useState(false);
 
   useEffect(()=>{
-    fetch('http://127.0.0.1:3000/posts/31.json',{
+    fetch('http://127.0.0.1:3000/posts/27.json',{
         method : "GET",
     }).then( response => response.json()).then(status => {
        console.log(status);
@@ -37,18 +39,34 @@ const PostShow = () => {
                                     <p className='card-text'>{postData.post.description}</p>
                                     <p className='card-text'><small className='text-muted'>Posted {moment(postData.post.published_at).fromNow()} </small></p>
                                     <p className='card-text'><small className='text-muted'>Last Updated {moment(postData.post.updated_at).fromNow()} </small></p> 
-                                    <button onClick={() => setShowSuggestions(!showSuggestions)} type="button" className="btn btn-link">Show Suggestions</button><br/><br/>
                                     {
-                                        ((postData.current_user.id === postData.post_user.id) && (postData.post.status === "PUBLISHED") && (showSuggestions)) ?
-                                            <Suggestions postData = {postData} users = {users} />
+                                        ((postData.current_user.id === postData.post_user.id) && (postData.post.status === "PUBLISHED")) ?
+                                            <div>
+                                                <button onClick={() => setShowSuggestions(!showSuggestions)} type="button" className="btn btn-link">Show Suggestions</button><br/><br/>
+                                                {
+                                                    (showSuggestions) ?
+                                                        <Suggestions postData = {postData} users = {users} />
+                                                    :
+                                                        false
+                                                }
+                                            </div>
                                         : 
-                                            false
+                                            ((postData.current_user.id !== postData.post_user.id) && (postData.post.status === "PUBLISHED")) ?
+                                                <div>
+                                                    <button onClick={() => setAddSuggestion(!addSuggestion)} type="button" className="btn btn-link">Add Suggestion</button><br/><br/>
+                                                    {
+                                                        (addSuggestion) ?
+                                                            <AddSuggestion post_id = {postData.post.id} />
+                                                        :
+                                                            false
+                                                    }
+                                                </div>
+                                            :
+                                                false
                                     }
 
                                     <button className='btn btn-warning'>Edit</button>
                                     <button className='btn btn-danger'>Delete</button>
-                                    {/* <%= link_to 'Edit', edit_post_path(post), className:'btn btn-warning' %>
-                                    <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, className:'btn btn-danger' %> */}
                                 </div>
                             )
                             :
