@@ -105,22 +105,6 @@ const PostShow = () => {
                             :
                                 false
                         }
-
-
-                        {/* <!-- Post details -->
-            
-                    
-                        <% else %>
-                            <!-- Show reported posts for the moderator -->
-                            <% if current_user.role == 'moderator' && post.report_status == 'reported' %>
-                            <%= render partial: 'reported', locals: {post: post} %><br/><br/>
-                            <% end %> remaining
-                    
-                            <%= link_to 'Report', set_status_post_path(post.id, status: 'reported'), method: :patch, data: { confirm: 'Are you sure?' } %>
-                            
-                            <% end %>
-                    
-                        <% end %> */}
                     </div>
                 </div>
             </div>
