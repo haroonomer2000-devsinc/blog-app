@@ -26,8 +26,6 @@ const ReportedPost = ({id}) => {
                 <div className='report-approval'>
                     <button onClick={() => handleReport('hidden')} className='btn btn-success'>Accept</button>
                     <button onClick={() => handleReport(null)} className='btn btn-danger'>Deny</button>
-                    {/* <%= link_to 'Accept', set_status_post_path(post.id, status: 'hidden'), method: :patch, data: { confirm: 'Are you sure?' }, className:'btn btn-success' %>
-                    <%= link_to 'Deny', set_status_post_path(post.id, status: nil), method: :patch, data: { confirm: 'Are you sure?' }, className:'btn btn-danger' %> */}
                 </div>
                 </span>
             </li>
