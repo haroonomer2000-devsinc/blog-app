@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, {useEffect, useState} from 'react'
+import AddComment from './AddComment';
 import AddSuggestion from './AddSuggestion';
 import Comments from './Comments';
 import ReportedPost from './ReportedPost';
@@ -111,10 +112,14 @@ const PostShow = () => {
         </div>
         {
             (postData !== null) ?
+            <div>
                 <Comments comments = {postData.comments} users = {users} />
+                <AddComment parent={null} post_id={postData.post.id} />
+            </div>
             :
                 false
         }
+       
     </div>
   )
 }

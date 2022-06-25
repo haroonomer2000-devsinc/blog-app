@@ -23,10 +23,10 @@ const ReportedPost = ({id}) => {
         <ul className='list-group'>
             <li className='list-group-item'>Post has been reported
                 <span>
-                <div className='report-approval'>
-                    <button onClick={() => handleReport('hidden')} className='btn btn-success'>Accept</button>
-                    <button onClick={() => handleReport(null)} className='btn btn-danger'>Deny</button>
-                </div>
+                    <div className='report-approval'>
+                        <button onClick={() => handleReport('hidden')} className='btn btn-success'>Accept</button>
+                        <button onClick={() => handleReport(null)} className='btn btn-danger'>Deny</button>
+                    </div>
                 </span>
             </li>
         </ul>
