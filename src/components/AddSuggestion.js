@@ -15,7 +15,6 @@ const AddSuggestion = ({post_id}) => {
     let params = {
         post
     }
-    console.log('agya')
     fetch(`http://127.0.0.1:3000/posts/${post_id}/suggestions`,{
         method: "POST",
         headers: {

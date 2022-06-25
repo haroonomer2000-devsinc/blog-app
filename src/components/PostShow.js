@@ -2,6 +2,7 @@ import moment from 'moment';
 import React, {useEffect, useState} from 'react'
 import AddSuggestion from './AddSuggestion';
 import Comments from './Comments';
+import ReportedPost from './ReportedPost';
 import Suggestions from './Suggestions';
 
 const PostShow = () => {
@@ -12,7 +13,7 @@ const PostShow = () => {
   const [addSuggestion, setAddSuggestion] = useState(false);
 
   useEffect(()=>{
-    fetch('http://127.0.0.1:3000/posts/27.json',{
+    fetch('http://127.0.0.1:3000/posts/31.json',{
         method : "GET",
     }).then( response => response.json()).then(status => {
        console.log(status);
@@ -24,6 +25,22 @@ const PostShow = () => {
        setUsers(temp_users);
     });
   },[])
+
+  const reportPost = (id, status) => {
+    let params = {
+        id,
+        status
+    }
+    fetch(`http://127.0.0.1:3000/posts/${id}/set_status`,{
+        method: "PATCH",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify(params)
+        }).then((response) => response.json()).then(status => {
+            window.location.reload();
+    })
+  }
     
   return (
     <div>
@@ -64,7 +81,23 @@ const PostShow = () => {
                                             :
                                                 false
                                     }
-
+                                    {
+                                        (postData.current_user.role === "moderator") ?
+                                            <div>
+                                                {
+                                                    (postData.post.report_status === 'reported') ?
+                                                        <ReportedPost id = {postData.post.id} />
+                                                    :
+                                                        false
+                                                }
+                                            </div>
+                                        : (postData.current_user.role !== "moderator" && postData.post.user_id !== postData.current_user.id) ?
+                                                <div>
+                                                    <button onClick={ () => reportPost(postData.post.id, 'reported')} className='btn btn-link'>Report</button><br/><br/>
+                                                </div>
+                                            :
+                                                false
+                                    }
                                     <button className='btn btn-warning'>Edit</button>
                                     <button className='btn btn-danger'>Delete</button>
                                 </div>
@@ -83,21 +116,6 @@ const PostShow = () => {
                             <%= render partial: 'reported', locals: {post: post} %><br/><br/>
                             <% end %> remaining
                     
-                            <!-- Show post suggestions to post owner -->
-                            <% if current_user.id == post.user_id && post.PUBLISHED? %>
-                            <a className='suggestions-display' href='#'>Show Suggestions</a>
-                            <div className='suggestion-form'>
-                                <%= render partial: 'suggestions/suggestions', locals: {post: post} %>
-                            </div><br/><br/>
-                            <%= link_to 'Edit', edit_post_path(post), className:'btn btn-warning' %>
-                            <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, className:'btn btn-danger' %> done
-                            
-                            <!-- Add suggestions if post not owned -->
-                            <% elsif current_user.id != post.user_id %>
-                            <a className='suggestion-form-display' href='#'>Add Suggestion</a>
-                            <div className='suggestion-form'>
-                            <%= render partial: 'suggestions/form', locals: {post: post} %>
-                            </div><br/><br/>
                             <%= link_to 'Report', set_status_post_path(post.id, status: 'reported'), method: :patch, data: { confirm: 'Are you sure?' } %>
                             
                             <% end %>
