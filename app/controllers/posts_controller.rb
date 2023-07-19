@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy publish remove set_status]
 
   # GET /posts or /posts.json
@@ -17,6 +17,10 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     redirect_to posts_path if @post.report_status == 'hidden'
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @post }
+    end    
   end
 
   # GET /posts/1/edit
